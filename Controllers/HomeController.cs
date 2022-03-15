@@ -11,7 +11,7 @@ namespace WEB_API.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
+            return Redirect("/swagger/ui/index");
             return View();
         }
     }

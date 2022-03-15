@@ -1,0 +1,1026 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HzyaU8COInterface</name>
+    </assembly>
+    <members>
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface.AuditingBOM(System.Int32,HzyaU8COInterface.BO.EnumBOMCatalogType,System.String)">
+            <summary>
+            物料清单审核处理
+            </summary>
+            <param name="partId">母件物料ID</param>
+            <param name="bomType">BOM类型1:主BOM</param>
+            <param name="versionOrIdenCode">主版本号或替代标识</param>
+            <returns>如果加载成功，则返回True；否则，返回False。</returns>
+        </member>
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface.UnauditingBOM(System.Int32,HzyaU8COInterface.BO.EnumBOMCatalogType,System.String)">
+            <summary>
+            物料清单弃审处理
+            </summary>
+            <param name="partId">母件物料ID</param>
+            <param name="bomType">BOM类型1:主BOM</param>
+            <param name="versionOrIdenCode">主版本号或替代标识</param>
+            <returns>如果加载成功，则返回True；否则，返回False。</returns>
+        </member>
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface.LoadBOM(System.Int32,HzyaU8COInterface.BO.EnumBOMCatalogType,System.String,UFSoft.U8.BO.BE.StandardBom@)">
+            <summary>
+            加载“物料清单”
+            </summary>
+            <param name="partId">母件物料ID</param>
+            <param name="bomType">BOM类型1:主BOM</param>
+            <param name="versionOrIdenCode">主版本号或替代标识</param>
+            <param name="extBO">扩展BO实体(输出)</param>
+            <returns>如果加载成功，则返回True；否则，返回False。</returns>
+        </member>
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface.DeleteBOM(System.Int32,HzyaU8COInterface.BO.EnumBOMCatalogType,System.String)">
+            <summary>
+            删除"物料清单"
+            </summary>
+            <param name="partId">母件物料ID</param>
+            <param name="bomType">BOM类型1:主BOM</param>
+            <param name="versionOrIdenCode">主版本号或替代标识</param>
+            <returns>如果保存成功，则返回True；否则，返回False。</returns>
+        </member>
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface.SaveBOM(System.String)">
+            <summary>
+            保存“物料清单”
+            </summary>
+            <param name="jsonBO">需要新增bom信息,成功后返回真实BomId</param>
+            <returns>如果保存成功，则返回True；否则，返回False。</returns>
+            
+        </member>
+        <member name="T:HzyaU8COInterface.BO.BomNewProcess">
+            <summary>
+            新增BOM资料处理。
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.BO.BomNewProcess.NewEmpty(UFSoft.U8.Framework.BizBase.IContextContainer)">
+            <summary>
+            产生一个新的标准物料清单。
+            </summary>
+            <param name="aCaller"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HzyaU8COInterface.BO.EnumBOMCatalogType">
+            <summary>
+            bom类型
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.BO.EnumBOMCatalogType.StandardBom">
+            <summary>
+            标准bom
+            </summary>
+        </member>
+        <member name="T:HzyaU8COInterface.CO.MCCOInterface">
+            <summary>
+            合同管理
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.MCCOInterface.#ctor">
+            <summary>
+            单据初始化
+            </summary> 
+        </member>
+        <member name="M:HzyaU8COInterface.CO.MCCOInterface.AddVoucher(MSXML2.DOMDocument,MSXML2.DOMDocument,MSXML2.DOMDocument,MSXML2.DOMDocument,MSXML2.DOMDocument,MSXML2.DOMDocument)">
+            <summary>
+            新增单据
+            </summary>
+            <param name="cDocXml"></param> 
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.MCCOInterface.LoadVoucher(System.String)">
+            <summary>
+            获取单据
+            </summary>
+            <param name="VoucherJson"> 
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:HzyaU8COInterface.CO.AACOInterface">
+            <summary>
+            基础档案模块
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.AACOInterface.#ctor(HzyaU8COInterface.CO.AAType)">
+            <summary>
+            单据初始化
+            </summary>
+            <param name="aaType"></param>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.AACOInterface.AddArchives(System.String)">
+            <summary>
+            新增单据
+            </summary>
+            <param name="cDocXml"></param> 
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.AACOInterface.ModifyArchives(System.String)">
+            <summary>
+            新增单据
+            </summary>
+            <param name="cDocXml"></param> 
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.AACOInterface.AddArchivesJson(System.String)">
+            <summary>
+            新增单据jsom
+            </summary>
+            <param name="VoucherJson"> 
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.AACOInterface.ModifyArchivesJson(System.String)">
+            <summary>
+            修改基础档案json
+            </summary>
+            <param name="VoucherJson"> 
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:HzyaU8COInterface.CO.AAType">
+            <summary>
+            单据类型
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.AAType.vendor">
+            <summary>
+            供应商档案
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.AAType.customer">
+            <summary>
+            客户档案
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.AAType.inventory">
+            <summary>
+            存货档案
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.CO.Interface.COLogInInterface.U8LoginUfDataConnstringForNet">
+            <summary>
+            u8date 库链接字符串
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.CO.Interface.COLogInInterface.UfDbName">
+            <summary>
+            u8date 库链接字符串 VB
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.Interface.COLogInInterface.Init(System.String)">
+            <summary>
+            Co 初始化
+            </summary>
+            <param name="userToken">U8Login.userToken 来初始化登陆对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.Interface.COLogInInterface.Init(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            co 初始化
+            </summary>
+            <param name="pSubId">登录模块</param>
+            <param name="pAccId">账套</param>
+            <param name="pYearId">年度</param>
+            <param name="pUserId">用户名</param>
+            <param name="pPassword">用户密码</param>
+            <param name="pDate">登陆日期</param>
+            <param name="cSrv">服务器地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.Interface.COLogInInterface.InitLogin(U8Login.clsLogin)">
+            <summary>
+            Co 初始化
+            </summary>
+            <param name="login"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HzyaU8COInterface.CO.APCOInterface">
+            <summary>
+            财务AP,AR模块
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APCOInterface.#ctor(HzyaU8COInterface.CO.APVoucherType,System.String)">
+            <summary>
+            单据初始化
+            </summary>
+            <param name="tAPVoucherType">单据类型</param>
+            <param name="cModelPath">默认模板路径</param> 
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APCOInterface.LoadVoucher(System.String)">
+            <summary>
+            获取订单
+            </summary>
+            <param name="cLinkID">单据id</param>
+            <returns>oData type CoModel</returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APCOInterface.AddNewVoucher(MSXML2.DOMDocument,MSXML2.DOMDocument)">
+            <summary>
+            新增单据
+            </summary>
+            <param name="Head"></param>
+            <param name="Body"></param>
+            <param name="VoucherState"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APCOInterface.AddNewVoucherJson(System.String)">
+            <summary>
+            新增单据jsom
+            </summary>
+            <param name="VoucherJson"> 
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APCOInterface.VerifyVoucher(MSXML2.DOMDocument)">
+            <summary>
+            审核单据
+            </summary>
+            <param name="DomHead"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APCOInterface.VerifyVoucherId(System.String)">
+            <summary>
+            审核Id版
+            </summary>
+            <param name="iID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APCOInterface.UnVerifyVoucher(MSXML2.DOMDocument)">
+            <summary>
+            弃审
+            </summary>
+            <param name="DomHead"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APCOInterface.UnVerifyVoucherId(System.String)">
+            <summary>
+            弃审Id版
+            </summary>
+            <param name="iID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APCOInterface.DeleteVoucher(MSXML2.DOMDocument)">
+            <summary>
+            单据删除
+            </summary> 
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APCOInterface.DeleteVoucherId(System.String)">
+            <summary>
+            删除Id版
+            </summary>
+            <param name="iID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APCOInterface.GetDefaultDom">
+            <summary>
+            获取模板
+            </summary> 
+        </member>
+        <member name="T:HzyaU8COInterface.CO.PUCOInterface">
+            <summary>
+            采购模块
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.#ctor(HzyaU8COInterface.CO.PuVoucherType)">
+            <summary>
+            单据初始化
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.LoadVoucher(System.String,System.String,System.String)">
+            <summary>
+            获取订单
+            </summary>
+            <param name="varVoucherID">单据id</param>
+            <param name="strWhere">查询条件</param>
+            <param name="strLocateWhere"></param>
+            <returns>oData type CoModel</returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.AddNewVoucher(MSXML2.DOMDocument,MSXML2.DOMDocument)">
+            <summary>
+            新增单据
+            </summary>
+            <param name="dHead"></param>
+            <param name="dBody"></param> 
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.UpdateVoucher(MSXML2.DOMDocument,MSXML2.DOMDocument)">
+            <summary>
+            修改单据
+            </summary>
+            <param name="dHead"></param>
+            <param name="dBody"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.VoucherSave(MSXML2.DOMDocument,MSXML2.DOMDocument,System.Int16)">
+            <summary>
+            基础保存
+            </summary>
+            <param name="dHead"></param>
+            <param name="dBody"></param>
+            <param name="VoucherState"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.LoadVoucherJson(System.String)">
+            <summary>
+            获取
+            </summary>
+            <param name="VoucherID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.AddNewVoucherJson(System.String)">
+             <summary>
+             新增单据jsom
+             </summary>
+             <param name="VoucherJson">{head:{},body:[{},{},{}]}
+            {
+                 "head": {
+                     "poid": "", 
+                     "cpoid": "0000000001",
+                     "cbustype": "普通采购",
+                     "dpodate": "2014-12-01T00:00:00",
+                     "cvencode": "01002",
+                     "cdepcode": "0401",
+                     "cpersoncode": "00043",
+                     "nflat": "1",
+                     "itaxrate": "17",  
+                     "idiscounttaxtype": "0",  
+                     "cexch_name": "人民币",      
+                 },
+                 "body": [
+                 {
+                     "cinvcode": "SJZB01",
+                     "iquantity": "16.0000000000",
+                     "darrivedate": "2014-12-01T00:00:00",
+                     "ipertaxrate": "17.000000",
+                     "btaxcost": "False",
+                 }
+                 ]
+             } 
+             </param>
+             <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.UpdateVoucherJson(System.String)">
+            <summary>
+            新增单据jsom
+            </summary>
+            <param name="VoucherJson"> 
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.VerifyVoucher(MSXML2.DOMDocument)">
+            <summary>
+            审核单据
+            </summary>
+            <param name="DomHead"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.VerifyVoucherId(System.String)">
+            <summary>
+            审核id版本
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.UnVerifyVoucher(MSXML2.DOMDocument)">
+            <summary>
+            弃审
+            </summary>
+            <param name="DomHead"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.UnVerifyVoucherId(System.String)">
+            <summary>
+            弃审
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.DeleteVoucher(MSXML2.DOMDocument,MSXML2.DOMDocument)">
+            <summary>
+            单据删除
+            </summary> 
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.Close(HzyaU8COInterface.Model.CoModel)">
+            <summary>
+            关闭
+            </summary>
+            <param name="DomHead"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.CloseVoucherId(System.String)">
+            <summary>
+            关闭
+            </summary>
+            <param name="cVoucherID">订单ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.Open(HzyaU8COInterface.Model.CoModel)">
+            <summary>
+            打开
+            </summary>
+            <param name="DomHead"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.OpenVoucherId(System.String)">
+            <summary>
+            打开
+            </summary>
+            <param name="cVoucherID">订单ID</param>
+            <returns></returns>
+        </member>
+        <member name="T:HzyaU8COInterface.CO.SACOInterface">
+            <summary>
+            销售模块CO
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.SACOInterface.Init">
+            <summary>
+            初始化重写
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.SACOInterface.AddNewVoucher(MSXML2.DOMDocument,MSXML2.DOMDocument)">
+            <summary>
+            销售单据制单 基础方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.SACOInterface.UpdateVoucher(MSXML2.DOMDocument,MSXML2.DOMDocument)">
+            <summary>
+            销售单据 修改 基础方法 editprop A 新增,D删除 ,M 修改
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.SACOInterface.ChangeVoucher(MSXML2.DOMDocument,MSXML2.DOMDocument)">
+            <summary>
+            销售单据 变更 基础方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.SACOInterface.UpdateVoucherJson(System.String)">
+            <summary>
+            修改单据jsom
+            </summary> 
+            <param name="cVoucherJson">{head:{},body:[{},{},{}]}</param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.SACOInterface.ChangeVoucherJson(System.String)">
+            <summary>
+            变更单据 
+            </summary> 
+            <param name="cVoucherJson">{head:{},body:[{},{},{}]}</param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.SACOInterface.AddNewVoucherJson(System.String)">
+            <summary>
+            新增单据json
+            </summary> 
+            <param name="cVoucherJson">{head:{},body:[{},{},{}]}</param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.SACOInterface.LoadVoucher(System.String)">
+            <summary>
+            销售获取
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.SACOInterface.LoadVoucherJson(System.String)">
+            <summary>
+            获取
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.SACOInterface.VerifyVoucher(MSXML2.DOMDocument,System.Boolean)">
+            <summary>
+            审核,弃审
+            </summary>
+            <param name="DomHead"></param>
+            <param name="bVerType">true 审核,false 弃审</param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.SACOInterface.VerifyVoucherId(System.String,System.Boolean)">
+            <summary>
+            审核弃审id版本
+            </summary>
+            <param name="id"></param>
+            <param name="bVerType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.SACOInterface.DeleteVoucher(MSXML2.DOMDocument)">
+            <summary>
+            销售删除
+            </summary>
+            <param name="DomHead"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.SACOInterface.DeleteVoucherId(System.String)">
+            <summary>
+            删除id版本
+            </summary>
+            <param name="id"></param>
+            <param name="bVerType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.SACOInterface.GetDefaultVoucherDom">
+            <summary>
+            获取dom 模板
+            </summary> 
+            <returns></returns>
+        </member>
+        <member name="T:HzyaU8COInterface.CO.SAVoucherTypeSA">
+            <summary>
+            单据类型
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.SAVoucherTypeSA.SaleBillSpecBlue">
+            <summary>
+            销售发票
+            待测试
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.SAVoucherTypeSA.SaleBillSpecRed">
+            <summary>
+            销售发票红字 
+            待测试
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.SAVoucherTypeSA.SaleBillCommBlue">
+            <summary>
+            专用发票
+            待测试
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.SAVoucherTypeSA.SaleBillCommRed">
+            <summary>
+            专用发票
+            待测试
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.SAVoucherTypeSA.DispatchBlue">
+            <summary>
+            发货单蓝字 
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.SAVoucherTypeSA.DispatchRed">
+            <summary>
+            退货单 
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.SAVoucherTypeSA.SODetails">
+            <summary>
+            销售订单 
+            </summary>
+        </member>
+        <member name="T:HzyaU8COInterface.CO.U8LoginInterface">
+            <summary>
+            登录
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.U8LoginInterface.Init(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            U8Login 登录
+            </summary>
+            <param name="pSubId">登录模块( DP:平台 )</param>
+            <param name="pAccId">账套( 999 )</param>
+            <param name="pYearId">年度</param>
+            <param name="pUserId">用户名</param>
+            <param name="pPassword">用户密码</param>
+            <param name="pDate">登陆日期</param>
+            <param name="cSrv">服务器地址</param>
+            <returns></returns>
+        </member>
+        <member name="P:HzyaU8COInterface.CO.U8LoginInterface.Server">
+            <summary>
+            服务器地址
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.CO.U8LoginInterface.UserId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.CO.U8LoginInterface.UserName">
+            <summary>
+            登录用户名称
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.CO.U8LoginInterface.UFDataConnstringForNet">
+            <summary>
+            data 库连接字符串
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.CO.U8LoginInterface.UFMetaConnstringForNet">
+            <summary>
+            meta 连接字符串
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.CO.U8LoginInterface.UserToken">
+            <summary>
+            用户userToken
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.CO.U8LoginInterface.Acc_Id">
+            <summary>
+            账套号
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.CO.U8LoginInterface.EmployeeId">
+            <summary>
+            登录账号关联的人员档案
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.CO.U8LoginInterface.IYear">
+            <summary>
+            登录年度
+            </summary>
+        </member>
+        <member name="T:HzyaU8COInterface.CO.STCOInterface">
+            <summary>
+            库存
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.STCOInterface.AddNewVoucher(MSXML2.DOMDocument,MSXML2.DOMDocument,MSXML2.DOMDocument,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean)">
+            <summary>
+            新增单据
+            </summary>
+            <param name="head">表头DOM</param>
+            <param name="body">表体DOM</param>
+            <param name="domPosition">货位DOM , 其他入库单不需要填写</param>
+            <param name="cnnFrom">连接对象</param>
+            <param name="bCheck">是否控制可用量</param>
+            <param name="bBeforCheckStock">是否检查可用量</param>
+            <param name="bIsRedVouch">是否红字单据</param>
+            <param name="sAddedState">新增状态(一般为空)</param>
+            <param name="bReMote">是否远程</param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.STCOInterface.AddNewVoucherJson(System.String,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean)">
+            <summary>
+            新增
+            </summary>
+            <param name="VoucherJson">数据json{ Head:{} Body:[{},{},{}] domPosition:[{},{},{}] }  </param> 
+            <param name="bCheck"></param>
+            <param name="bBeforCheckStock"></param>
+            <param name="bIsRedVouch"></param>
+            <param name="sAddedState"></param>
+            <param name="bReMote"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.STCOInterface.VerifyVoucher(System.String)">
+            <summary>
+            审核单据
+            </summary>
+            <param name="VoucherId">单据ID</param>
+            <param name="cnnFrom">连接对象</param>
+            <param name="TimeStamp">时间戳</param>
+            <param name="bCheck">是否控制可用量</param>
+            <param name="bBeforCheckStock">是否检查可用量</param>
+            <param name="bList">是否列表</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.STCOInterface.Update(MSXML2.DOMDocument,MSXML2.DOMDocument,MSXML2.DOMDocument,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean)">
+            <summary>
+            修改单据
+            </summary>
+            <param name="_vouchType">单据类型(此单据类型为数据库后台表的后缀号码,例如:采购入库单:01)</param>
+            <param name="domHead">表头</param>
+            <param name="domBody">表体</param>
+            <param name="domPosition">库位</param>
+            <param name="bCheck">是否控制可用量</param>
+            <param name="bBeforCheckStock">是否检查可用量</param>
+            <param name="bIsRedVouch"></param>
+            <param name="sAddedState"></param>
+            <param name="bUpdateNeedEas"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.STCOInterface.UnVerifyVoucher(System.String)">
+            <summary>
+            弃审单据
+            </summary>
+            <param name="VouchId">单据ID</param>
+            <param name="cnnFrom">连接对象</param>
+            <param name="TimeStamp">时间戳</param>
+            <param name="bCheck">是否控制可用量</param>
+            <param name="bBeforCheckStock">是否检查可用量</param>
+            <param name="bList">是否列表</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.STCOInterface.DeleteVoucher(System.String)">
+            <summary>
+            单据删除
+            </summary>
+            <param name="VoucherId">单据ID</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.STCOInterface.LoadVoucher(System.String,System.Boolean,System.String)">
+            <summary>
+            获取单据 基础
+            </summary>
+            <param name="_vouchType"></param>
+            <param name="sWhere"></param>
+            <param name="bGetBlank"></param>
+            <param name="sBodyWhere_Order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.STCOInterface.LoadVoucherJson(System.String,System.Boolean,System.String)">
+            <summary>
+            获取单据
+            </summary>
+            <param name="_vouchType"></param>
+            <param name="sWhere"></param>
+            <param name="bGetBlank"></param>
+            <param name="sBodyWhere_Order"></param>
+            <returns>数据json{ Head:{} Body:[{},{},{}] domPosition:[{},{},{}] } </returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.STCOInterface.GetDefaultDom(System.String)">
+            <summary>
+            获取单据默认模板
+            select * from vouchers where cVouchName like '%库%'
+            </summary>
+            <param name="_vouchType">单据类型(此单据类型为数据库后台表的后缀号码,例如:采购入库单:01)</param>
+            <param name="sCardNum">单据类型编码</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="T:HzyaU8COInterface.CO.STVoucherType">
+            <summary>
+            单据类型
+            增加类型请参照api资源管理器
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.STVoucherType.RdRecord01">
+            <summary>
+            采购入库单主表
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.STVoucherType.RdRecord08">
+            <summary>
+            其他入库单主表
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.STVoucherType.RdRecord09">
+            <summary>
+            其他出库单主表
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.STVoucherType.RdRecord10">
+            <summary>
+            产成品入库单主表
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.STVoucherType.RdRecord11">
+            <summary>
+            材料出库单主表
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.STVoucherType.RdRecord32">
+            <summary>
+            销售出库单主表
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.STVoucherType.RdRecord34">
+            <summary>
+            库存期初主表
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.STVoucherType.TransVouch">
+            <summary>
+            调拨单
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.STVoucherType.CheckVouch">
+            <summary>
+            盘点单
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.STVoucherType.TransRequestVouch">
+            <summary>
+            调拨申请单
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.STVoucherType.TransSimulate">
+            <summary>
+            调拨建议处理(调拨模拟)
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.CO.STVoucherType.MaterialAppealVouch">
+            <summary>
+            领料申请单
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Model.Result.Success">
+            <summary>
+            是否成功
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Model.Result.ErrMsgRet">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Model.Result.ErrDate">
+            <summary>
+            错误详细内容以及说明
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Model.Result.VouchIdRet">
+            <summary>
+            单据id
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Model.Result.VouchCode">
+            <summary>
+            单据Code
+            </summary>
+        </member>
+        <member name="T:HzyaU8COInterface.Tools.DateTableJsonConversion">
+            <summary>
+            DateTable转换成Json
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.Tools.DateTableJsonConversion.ToVoucher(System.Data.DataTable,System.Data.DataTable)">
+            <summary>
+            转换成 单据json {head:{},body:[{},{}]}
+            </summary>
+            <param name="dtHead"></param>
+            <param name="dtBody"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.Tools.DateTableJsonConversion.ToHead(System.Data.DataTable)">
+            <summary>
+            转表头{}
+            </summary>
+            <param name="dtHead">表头DataTable</param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.Tools.DateTableJsonConversion.ToBody(System.Data.DataTable)">
+            <summary>
+            转换表体[{},{},{}]
+            </summary>
+            <param name="dtBody">表体DataTable</param>
+            <returns></returns>
+        </member>
+        <member name="T:HzyaU8COInterface.Tools.GenerateDOM">
+            <summary>
+            dom获取类
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.Tools.JsonDomConversion.ToDom(MSXML2.DOMDocument@,MSXML2.DOMDocument@,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            标准单据dom 转换
+            </summary>
+            <param name="head"></param>
+            <param name="body"></param>
+            <param name="json"></param>
+        </member>
+        <member name="M:HzyaU8COInterface.Tools.JsonDomConversion.ToJson(MSXML2.DOMDocument,MSXML2.DOMDocument)">
+            <summary>
+            标准的 dom 转换成json
+            </summary>
+            <param name="head"></param>
+            <param name="body"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.Tools.JsonDomConversion.ToDomRow(MSXML2.DOMDocument@,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            json 转换成 DOMDocument 表头一行的
+            </summary>
+            <param name="head"></param>
+            <param name="jsonRow"></param>
+        </member>
+        <member name="M:HzyaU8COInterface.Tools.JsonDomConversion.ToDomRows(MSXML2.DOMDocument@,Newtonsoft.Json.Linq.JArray)">
+            <summary>
+            json 转换成 DOMDocument 表体的多行
+            </summary>
+            <param name="Body"></param>
+            <param name="json"></param>
+        </member>
+        <member name="M:HzyaU8COInterface.Tools.JsonDomConversion.ToJsonRow(MSXML2.DOMDocument)">
+            <summary>
+            表头dom转换成 jsom 一行
+            </summary>
+            <param name="dom"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.Tools.JsonDomConversion.ToJsonRows(MSXML2.DOMDocument)">
+            <summary>
+            表体dom 转换成 json 多行
+            </summary>
+            <param name="dom"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.Tools.LogTools.WriteLine(System.String,System.Boolean)">
+            <summary>
+            输出错误信息到 控制台
+            </summary>
+            <param name="str"></param>
+            <param name="PrintTXT">\log\COLog.txt 是否 日志记录</param>
+        </member>
+        <member name="T:HzyaU8COInterface.Tools.U8AmountCalculation">
+            <summary>
+            使用一些固定值来计算 其他金额
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.Tools.U8AmountCalculation.Calculation(System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Int32)">
+            <summary>
+            用数量和单价计算
+            </summary>
+            <param name="iTaxPrice">原币含税单价</param>
+            <param name="iQuantity">数量</param> 
+            <param name="nflat">汇率</param>
+            <param name="iPerTaxRate">税率</param>
+            <param name="iLenDecimal">保留小数位数 默认6位</param>
+        </member>
+        <member name="M:HzyaU8COInterface.Tools.U8AmountCalculation.CalculationSum(System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Int32)">
+            <summary>
+            用总金额取计算
+            </summary>
+            <param name="iSum">原币含税金额</param>
+            <param name="iQuantity">数量</param>
+            <param name="nflat">汇率</param>
+            <param name="iPerTaxRate">税率 默认13</param>
+            <param name="iLenDecimal">保留小数位数</param>
+        </member>
+        <member name="P:HzyaU8COInterface.Tools.AmountEntity.PerTaxRate">
+            <summary>
+            税率
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Tools.AmountEntity.Flat">
+            <summary>
+            汇率
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Tools.AmountEntity.Quantity">
+            <summary>
+            数量
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Tools.AmountEntity.Sum">
+            <summary>
+            原币价税合计
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Tools.AmountEntity.TaxPrice">
+            <summary>
+            原币含税单价
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Tools.AmountEntity.UnitPrice">
+            <summary>
+            原币无税单价
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Tools.AmountEntity.Money">
+            <summary>
+            原币无税金额
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Tools.AmountEntity.Tax">
+            <summary>
+            原币税额
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Tools.AmountEntity.NatTaxPrice">
+            <summary>
+             本币含税单价
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Tools.AmountEntity.NatUnitPrice">
+            <summary>
+            本币无税单价
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Tools.AmountEntity.NatSum">
+            <summary>
+             本币价税合计
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Tools.AmountEntity.NatMoney">
+            <summary>
+            本币无税金额 
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.Tools.AmountEntity.NatTax">
+            <summary>
+            本币税额
+            </summary>
+        </member>
+        <member name="M:UFSoft.U8.U8M.API.PartIdHelper.GetInvCodeAndFreeItems(Newtonsoft.Json.Linq.JObject,System.String,System.String,System.String,System.String@,System.String[]@)">
+            <summary>
+            
+            </summary>
+            <param name="row"></param>
+            <param name="invCodeName"></param>
+            <param name="invFreePrefix"></param>
+            <param name="engineerFigNoName"></param>
+            <param name="invCode"></param>
+            <param name="invFreeItems"></param>
+            <remarks>
+            若存货为空，则由工程图号获得PartId，若获得不到则抛错;
+            若存货不为空，则由存货获得PartId，若获得不到则抛错
+            </remarks>
+        </member>
+    </members>
+</doc>
