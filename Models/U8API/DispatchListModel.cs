@@ -44,6 +44,11 @@ namespace WEB_API.Models.U8API
         /// 是否关闭
         /// </summary>
         public string iCloser { get; set; }
+
+        public override string ToString()
+        {
+            return $"{nameof(DLID)}: {DLID}, {nameof(cDLCode)}: {cDLCode}, {nameof(dDateStart)}: {dDateStart}, {nameof(dDateEnd)}: {dDateEnd}, {nameof(dverifysystimeStart)}: {dverifysystimeStart}, {nameof(dverifysystimeEnd)}: {dverifysystimeEnd}, {nameof(bReturnFlag)}: {bReturnFlag}, {nameof(iCloser)}: {iCloser}";
+        }
     }
 
     /// <summary>

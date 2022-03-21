@@ -35,5 +35,10 @@ namespace WEB_API.Models.U8API
         /// U8登录地址
         /// </summary>
         public string Srv { get; set; }
+
+        public override string ToString()
+        {
+            return $"{nameof(UserToke)}: {UserToke}, {nameof(AccId)}: {AccId}, {nameof(YearId)}: {YearId}, {nameof(UserId)}: {UserId}, {nameof(Password)}: {Password}, {nameof(Date)}: {Date}, {nameof(Srv)}: {Srv}";
+        }
     }
 }

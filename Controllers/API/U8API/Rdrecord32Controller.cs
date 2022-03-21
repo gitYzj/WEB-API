@@ -11,6 +11,7 @@ using HzyaU8COInterface.CO;
 using Newtonsoft.Json.Linq;
 using WEB_API.Models;
 using WEB_API.Models.U8API;
+using WEB_API.Tools;
 
 namespace WEB_API.Controllers.API.U8API
 {
@@ -36,7 +37,7 @@ namespace WEB_API.Controllers.API.U8API
         [HttpPost]
         public ApiReturnModel<object> AddVoucherLogin([FromBody] CoVoucherModel<Rdrecord32Model> rdModel)
         {
-            //C_Common.WriteLog("操作日志", $"{DateTime.Now.ToString("O")}:{_TITLE} AddVoucher");
+            Log4Helper.Info(this.GetType(), $"{DateTime.Now.ToString("O")}:{_TITLE} Rdrecord32"); 
             ApiReturnModel<object> rj;
             try
             {
@@ -54,13 +55,14 @@ namespace WEB_API.Controllers.API.U8API
             }
             catch (Exception e)
             {
-                //C_Common.WriteLog("系统异常日志", $"{DateTime.Now.ToString("O")} GetVoucher:{_TITLE} Exception:{e.ToString()},data:{json} ");
-                return new ApiReturnModel<object>(0, e.ToString());
+                Log4Helper.Error(this.GetType(), $"{DateTime.Now.ToString("O")}:{_TITLE} Exception:{e.ToString()},data:{rdModel.ToString()} "); 
+                return new ApiReturnModel<object>(0, e.Message);
             }
-            //if (rj.Flag == 1)
-            //C_Common.WriteLog(_TITLE, $"{DateTime.Now.ToString("O")}:{_TITLE} , return {rj.ToString()}");
-            //else
-            //C_Common.WriteLog(_TITLE, $"{DateTime.Now.ToString("O")}:{_TITLE} data:{json}, return {rj.ToString()}");
+
+            Log4Helper.Info(this.GetType(),
+                rj.Error == 0
+                    ? $"{DateTime.Now.ToString("O")}:{_TITLE} , return {rj.ToString()}"
+                    : $"{DateTime.Now.ToString("O")}:{_TITLE} data:{rdModel.ToString()}, return {rj.ToString()}");
             return rj;
         }
          
