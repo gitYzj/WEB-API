@@ -224,7 +224,9 @@
     <Content Include="DLL\U8CO\Interop.U8Login.dll" />
     <Content Include="DLL\U8CO\Interop.U8SrvTrans.dll" />
     <Content Include="DLL\U8CO\Interop.VBA.dll" />
-    <Content Include="DLL\U8CO\Interop.VBCOConversion.dll" />
+    <Content Include="DLL\U8CO\Interop.VBCOConversion.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="DLL\U8CO\Newtonsoft.Json.dll" />
     <Content Include="DLL\U8CO\Newtonsoft.Json.xml" />
     <Content Include="DLL\U8CO\Template\合同单据_加载.xml" />
@@ -235,7 +237,9 @@
     <Content Include="DLL\U8CO\Template\收款单表体.txt" />
     <Content Include="DLL\U8CO\Template\收款单表头.txt" />
     <Content Include="DLL\U8CO\Template\说明.txt" />
-    <Content Include="DLL\U8CO\VBConversion\VBCOConversion.dll" />
+    <Content Include="DLL\U8CO\VBConversion\VBCOConversion.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

@@ -39,14 +39,10 @@ namespace HzyaMVCWebApiService.Controllers.ApiCO.Interface
         {
             try
             {
-                string pAccId = rdModel.Login.AccId;
-                string pYearId = rdModel.Login.YearId;
-                string pUserId = rdModel.Login.UserId;
-                string pPassword = rdModel.Login.Password;
-                string pDate = rdModel.Login.Date;
-                string cSrv = rdModel.Login.Srv;
+                //登录对象补充
+                rdModel.Login = InitLogin(rdModel.Login); 
                 Result result = null;
-                result = _STCO.Init("SA", pAccId, pYearId, pUserId, pPassword, pDate, cSrv);
+                result = _STCO.Init("SA", rdModel.Login.AccId, rdModel.Login.YearId, rdModel.Login.UserId, rdModel.Login.Password, rdModel.Login.Date, rdModel.Login.Srv);
                 if (!result.Success)
                 {
                     return new ApiReturnModel<object>(-1, result.ErrMsgRet);

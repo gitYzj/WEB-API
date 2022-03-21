@@ -20,15 +20,31 @@ namespace HzyaMVCWebApiService.Controllers.ApiCO.Interface.ICo
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
-        internal U8LoginModel InitLogin([FromBody] JObject json)
-        {
-            U8LoginModel login = new U8LoginModel();
-            login.AccId = json["login"]["pAccId"].ToString();
-            login.YearId = Convert.ToDateTime(json["login"]["pDate"]).Year.ToString();
-            login.UserId = json["login"]["pUserId"].ToString();
-            login.Password = json["login"]["pPassword"].ToString();
-            login.Date = json["login"]["pDate"].ToString();    
-            login.Srv = json["login"]["cSrv"].ToString(); 
+        internal U8LoginModel InitLogin(U8LoginModel login)
+        { 
+            //账套号
+            if (string.IsNullOrEmpty(login.AccId))
+            {
+                login.AccId = System.Configuration.ConfigurationManager.AppSettings["pAccId"];
+            }
+            if (string.IsNullOrEmpty(login.Srv))
+            {
+                login.Srv = System.Configuration.ConfigurationManager.AppSettings["U8ApiSev"];
+            }
+            if (string.IsNullOrEmpty(login.Password))
+            {
+                login.AccId = System.Configuration.ConfigurationManager.AppSettings["pPassword"];
+            }
+            if (string.IsNullOrEmpty(login.UserId))
+            {
+                login.AccId = System.Configuration.ConfigurationManager.AppSettings["pUserId"];
+            }
+
+            if (string.IsNullOrEmpty(login.Date))
+            {
+                login.Date = DateTime.Now.ToString("yyyy-MM-dd");
+                login.YearId = DateTime.Now.Year.ToString();
+            } 
             return login;
         }
 

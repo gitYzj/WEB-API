@@ -31,7 +31,7 @@ namespace WEB_API.Controllers.API
         {
             ApiReturnModel<string> result = new ApiReturnModel<string>();
             
-            IEnumerable<dynamic> userList;
+            IEnumerable<dynamic> userList; 
             using (IDbConnection conn = new SqlConnection(GetApiDbConnection))
             {
                 userList = conn.Query<UasrModel>("select * from user where user=@UserName and pwd=@PWD", user);

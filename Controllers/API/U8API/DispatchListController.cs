@@ -60,7 +60,7 @@ namespace WEB_API.Controllers.U8API
                 List<DispatchListModel> dispatchList = new List<DispatchListModel>();
                 DispatchListModel dispatch = null;
                 IEnumerable<DispatchListModel> dmModel =
-                    conn.Query<DispatchListModel, DispatchListsModel, DispatchListModel>(@"
+                    conn.Query<DispatchListModel, DispatchListsModel, DispatchListModel>($@"
  select 
 dl.DLID --发货退货单主表标识
  ,cDLCode --发货退货单号

@@ -39,7 +39,7 @@ namespace HzyaMVCWebApiService.Controllers.ApiCO.Interface
                 }
                 else
                 {
-                    U8LoginModel login = base.InitLogin(json);
+                    U8LoginModel login = base.InitLogin(new U8LoginModel());
                     result = _APCO.Init("PU", login.AccId, login.YearId, login.UserId, login.Password, login.Date, login.Srv);
                 } 
                 if (!result.Success) return new ApiReturnModel<object>(-1, result.ErrMsgRet); 
@@ -78,7 +78,7 @@ namespace HzyaMVCWebApiService.Controllers.ApiCO.Interface
                 }
                 else
                 {
-                    U8LoginModel login = base.InitLogin(json);
+                    U8LoginModel login = base.InitLogin(new U8LoginModel());
                     result = _APCO.Init("PU", login.AccId, login.YearId, login.UserId, login.Password, login.Date, login.Srv);
                 }
                 if (!result.Success) return new ApiReturnModel<object>(-1, result.ErrMsgRet);
