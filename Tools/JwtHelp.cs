@@ -21,7 +21,7 @@ namespace WEB_API.Tools
             /// </summary>
             /// <param name="payload">不敏感的用户数据</param>
             /// <returns></returns>
-            public static string SetJwtEncode(UasrModel payload)
+            public static string SetJwtEncode(UserModel payload)
             {  
                 IJwtAlgorithm algorithm = new HMACSHA256Algorithm();
                 IJsonSerializer serializer = new JsonNetSerializer();
@@ -37,7 +37,7 @@ namespace WEB_API.Tools
             /// </summary>
             /// <param name="token">jwtToken</param>
             /// <returns></returns>
-            public static UasrModel GetJwtDecode(string token)
+            public static UserModel GetJwtDecode(string token)
             {
                 IJsonSerializer serializer = new JsonNetSerializer();
                 IDateTimeProvider provider = new UtcDateTimeProvider();
@@ -45,7 +45,7 @@ namespace WEB_API.Tools
                 IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
                 var algorithm = new HMACSHA256Algorithm();
                 IJwtDecoder decoder = new JwtDecoder(serializer, validator, urlEncoder, algorithm);
-                var userInfo = decoder.DecodeToObject<UasrModel>(token, secret, verify: true);//token为之前生成的字符串
+                var userInfo = decoder.DecodeToObject<UserModel>(token, secret, verify: true);//token为之前生成的字符串
                 return userInfo;
             }
         

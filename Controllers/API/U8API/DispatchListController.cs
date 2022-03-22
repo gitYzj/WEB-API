@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Dapper;
@@ -24,21 +25,25 @@ namespace WEB_API.Controllers.U8API
     /// <summary>
     /// 发货单111111111111111
     /// </summary>
-    [ApiExplorerSettings(IgnoreApi = false)]
+    [ApiExplorerSettings(IgnoreApi = false)] 
+    [MyAuthorizeAttribute]
     public class DispatchListController : U8ApiBaseController
     {
         /// <summary>
         /// 获取发货单列表
         /// </summary>
         /// <param name="dlModel">发货单查询条件</param>
-        /// <returns></returns>
-        // [MyAuthorize]
+        /// <returns></returns> 
         [HttpPost]
         public ApiReturnModel<List<DispatchListModel>> GetList(DispatchListGetModel dlModel)
         {
+            UserModel user = (UserModel)HttpContext.Current.Items["User"];
             try
             {
-                Log4Helper.Info(this.GetType(), $"{DateTime.Now.ToString("O")}:{dlModel.ToString()}");
+
+                new ApiLogModel(this.GetType(), ErrorType.日志, user.UserName, "", dlModel.ToString(), "获取发货单列表").SQLLog(); //日志输出
+
+                //Log4Helper.Info(this.GetType(), $"{DateTime.Now.ToString("O")}:{dlModel.ToString()}");
                 string sqlWhere = "where 1=1 "; //不关闭的
                 if (!string.IsNullOrEmpty(dlModel.iCloser) && dlModel.iCloser == "1") sqlWhere += "and cCloser is not null "; //关闭的
                 else
@@ -50,7 +55,7 @@ namespace WEB_API.Controllers.U8API
                 if (!string.IsNullOrEmpty(dlModel.dverifysystimeStart)) sqlWhere += $" and dverifysystime>='{dlModel.dverifysystimeStart}'";
                 if (!string.IsNullOrEmpty(dlModel.dverifysystimeEnd)) sqlWhere += $" and dverifysystime<='{dlModel.dverifysystimeEnd}'";
                 if (!string.IsNullOrEmpty(dlModel.bReturnFlag)) sqlWhere += $" and bReturnFlag='{dlModel.bReturnFlag}'";
-                 
+
                 ////单据变动时间
                 //string cDefine4Start = json["cDefine4Start"]?.ToString();
                 ////单据变动时间
@@ -141,14 +146,19 @@ order by cDefine4,dverifysystime;
                             // return course;
                         }, splitOn: "DLID");
                     dispatchList.Add(dispatch);
-                    Log4Helper.Info(this.GetType(), $"{DateTime.Now.ToString("O")}:完成");
+
+                    new ApiLogModel(this.GetType(), ErrorType.日志, user.UserName, "", dlModel.ToString(), "获取发货单列表完成").SQLLog(); //日志输出 
+                    //Log4Helper.Info(this.GetType(), $"{DateTime.Now.ToString("O")}:完成");
                     return new ApiReturnModel<List<DispatchListModel>>(0, "", dispatchList);
 
                 }
             }
             catch (Exception e)
-            { ;
-                Log4Helper.Error(this.GetType(), $"{DateTime.Now.ToString("O")}:{e.Message}");
+            {
+                ;
+                new ApiLogModel(this.GetType(), ErrorType.异常, user.UserName, "", dlModel.ToString(), "获取发货单列表异常:" + e.ToString()).SQLLog(); //日志输出 
+
+                // Log4Helper.Error(this.GetType(), $"{DateTime.Now.ToString("O")}:{e.Message}");
                 return new ApiReturnModel<List<DispatchListModel>>(-1, e.Message, null); ;
             }
 

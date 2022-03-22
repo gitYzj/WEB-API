@@ -14,7 +14,7 @@ namespace WEB_API.Models
         /// <summary>
         /// 密码
         /// </summary>
-        public string PWD { get; set; }
+        public string UserPWd { get; set; }
     }
 
 

@@ -19,7 +19,8 @@ namespace WEB_API
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-           // GlobalConfiguration.Configure(WebApiConfig.Register);//Ìí¼Ó
+
+            // GlobalConfiguration.Configure(WebApiConfig.Register);//Ìí¼Ó
         }
     }
 }
