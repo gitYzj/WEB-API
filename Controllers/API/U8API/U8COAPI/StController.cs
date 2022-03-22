@@ -21,7 +21,7 @@ namespace HzyaMVCWebApiService.Controllers.ApiCO.Interface
         internal string _TITLE = "库存模块";
         internal STVoucherType _vType;
 
-        public StController(STVoucherType vType, string title)
+        internal StController(STVoucherType vType, string title)
         {
             _STCO = new STCOInterface(vType);
             _vType = vType;
@@ -35,7 +35,7 @@ namespace HzyaMVCWebApiService.Controllers.ApiCO.Interface
         /// <param name="json"></param>
         /// <returns></returns> 
         [ApiExplorerSettings(IgnoreApi = true)]
-        public virtual ApiReturnModel<object> AddVoucherLogin([FromBody] CoVoucherModel<Rdrecord32Model> rdModel)
+        internal virtual ApiReturnModel<object> AddVoucherLogin([FromBody] CoVoucherModel<Rdrecord32Model> rdModel)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace HzyaMVCWebApiService.Controllers.ApiCO.Interface
         /// <param name="json">{"UserToke":"","cVoucherId":""}</param>
         /// <returns></returns> 
         [ApiExplorerSettings(IgnoreApi = true)]
-        public virtual ApiReturnModel<object> GetVoucherLogin([FromBody] JObject json)
+        internal virtual ApiReturnModel<object> GetVoucherLogin([FromBody] JObject json)
         {
             try
             {
@@ -105,7 +105,7 @@ namespace HzyaMVCWebApiService.Controllers.ApiCO.Interface
         /// <param name="json"></param>
         /// <returns></returns>
         [ApiExplorerSettings(IgnoreApi = true)]
-        public virtual ApiReturnModel<object> VerifyVoucherLogin([FromBody] JObject json)
+        internal virtual ApiReturnModel<object> VerifyVoucherLogin([FromBody] JObject json)
         {
             string pAccId = json["login"]["pAccId"].ToString();
             string pYearId = json["login"]["pYearId"].ToString();
@@ -133,7 +133,7 @@ namespace HzyaMVCWebApiService.Controllers.ApiCO.Interface
         /// <param name="json"></param>
         /// <returns></returns>
         [ApiExplorerSettings(IgnoreApi = true)]
-        public virtual ApiReturnModel<object> UnVerifyVoucherLogin([FromBody] JObject json)
+        internal virtual ApiReturnModel<object> UnVerifyVoucherLogin([FromBody] JObject json)
         {
             string pAccId = json["login"]["pAccId"].ToString();
             string pYearId = json["login"]["pYearId"].ToString();
@@ -162,7 +162,7 @@ namespace HzyaMVCWebApiService.Controllers.ApiCO.Interface
         /// <param name="json"></param>
         /// <returns></returns>
         [ApiExplorerSettings(IgnoreApi = true)]
-        public virtual ApiReturnModel<object> DeleteVoucherLogin([FromBody] JObject json)
+        internal virtual ApiReturnModel<object> DeleteVoucherLogin([FromBody] JObject json)
         {
             string pAccId = json["login"]["pAccId"].ToString();
             string pYearId = json["login"]["pYearId"].ToString();
