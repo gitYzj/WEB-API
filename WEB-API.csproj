@@ -185,6 +185,8 @@
     <Compile Include="Controllers\API\U8API\Base\U8ApiBaseController.cs" />
     <Compile Include="Controllers\API\U8API\DispatchListController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Filter\ApiActionAttribute.cs" />
+    <Compile Include="Filter\ApiExceptionAttribute.cs" />
     <Compile Include="Filter\HttpAuthHeaderFilter.cs" />
     <Compile Include="Filter\MyAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">

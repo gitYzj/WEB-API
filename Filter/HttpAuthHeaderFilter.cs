@@ -32,7 +32,7 @@ namespace WEB_API.Filter
             //如果包含名字叫TokenAuthorizeAttribute过滤器则给该方法的swagger调用出添加两个头部信息输入框(看个人需要)
             if (actionFilter || controllerFilter)
             {
-                operation.parameters.Add(new Parameter { name = "Authorization", @in = "header", description = "安全", required = true, type = "string" });
+                operation.parameters.Add(new Parameter { name = "Authorization", @in = "header", description = "头部token 有效期30分钟", required = true, type = "string" });
               //  operation.parameters.Add(new Parameter { name = "userid", @in = "header", description = "安全", required = true, type = "string" });
             }
 

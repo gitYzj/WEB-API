@@ -41,7 +41,6 @@ namespace WEB_API.Filter
             httpContext.Items.Add("User", userinfo); 
 
         } 
-
-
+        
     }
 }

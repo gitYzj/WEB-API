@@ -14,6 +14,7 @@ namespace WEB_API.Models
     {
         private static string GetApiDbConnection = ConfigurationManager.ConnectionStrings["ApiSystem"].ConnectionString;
         public ErrorType cType { get; set; }
+        public string cClassTypeName { get { return cClassType.ToString(); } }
         public string cUserName { get; set; }
         public string cReturnData { get; set; }
         public string cInputData { get; set; }
@@ -31,6 +32,7 @@ namespace WEB_API.Models
             this.cReturnData = cReturnData;
             this.cInputData = cInputData;
             this.cMesg = cMesg;
+            this.cClassType = cClassType;
         }
 
         public async void SQLLog()
@@ -39,7 +41,7 @@ namespace WEB_API.Models
             {
                 using (IDbConnection conn = new SqlConnection(GetApiDbConnection))
                 {
-                    conn.Execute("insert into (cClassType,cType,cUserName,cReturnData,cInputData,cMesg,dDate) values(@cClassType,@cType,@cUserName,@cReturnData,@cInputData,@cMesg,@dDate);", this);
+                    conn.Execute("insert into ApiLog(cClassType,cType,cUserName,cReturnData,cInputData,cMesg,dDate) values(@cClassTypeName,@cType,@cUserName,@cReturnData,@cInputData,@cMesg,@dDate);", this);
                 }
             }
             catch (Exception e)
