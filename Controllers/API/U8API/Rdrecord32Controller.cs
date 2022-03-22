@@ -4,13 +4,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using HzyaMVCWebApiService.Controllers.ApiCO.Interface;
 using HzyaU8COInterface.CO;
 using Newtonsoft.Json.Linq;
+using WEB_API.Filter;
 using WEB_API.Models;
 using WEB_API.Models.U8API;
+using WEB_API.Tools;
 
 namespace WEB_API.Controllers.API.U8API
 {
@@ -34,12 +37,15 @@ namespace WEB_API.Controllers.API.U8API
         /// <returns></returns> 
         [ApiExplorerSettings(IgnoreApi = false)]
         [HttpPost]
+        [MyAuthorizeAttribute] 
         public ApiReturnModel<object> AddVoucherLogin([FromBody] CoVoucherModel<Rdrecord32Model> rdModel)
         {
-            //C_Common.WriteLog("操作日志", $"{DateTime.Now.ToString("O")}:{_TITLE} AddVoucher");
+            UserModel user = (UserModel)HttpContext.Current.Items["User"];
+            //Log4Helper.Info(this.GetType(), $"{DateTime.Now.ToString("O")}:{_TITLE} Rdrecord32"); 
             ApiReturnModel<object> rj;
             try
             {
+                new ApiLogModel(this.GetType(), ErrorType.日志, user.UserName, "", rdModel.ToString(), "获取发货单列表完成").SQLLog(); //日志输出 
                 rj = base.AddVoucherLogin(rdModel);
                 //if (rj.Flag == 1)
                 //{
@@ -54,13 +60,12 @@ namespace WEB_API.Controllers.API.U8API
             }
             catch (Exception e)
             {
-                //C_Common.WriteLog("系统异常日志", $"{DateTime.Now.ToString("O")} GetVoucher:{_TITLE} Exception:{e.ToString()},data:{json} ");
-                return new ApiReturnModel<object>(0, e.ToString());
+               // Log4Helper.Error(this.GetType(), $"{DateTime.Now.ToString("O")}:{_TITLE} Exception:{e.ToString()},data:{rdModel.ToString()} ");
+                new ApiLogModel(this.GetType(), ErrorType.警告, user.UserName, "", rdModel.ToString(), "出库单异常:"+ e.ToString()).SQLLog(); //日志输出 
+                return new ApiReturnModel<object>(0, e.Message);
             }
-            //if (rj.Flag == 1)
-            //C_Common.WriteLog(_TITLE, $"{DateTime.Now.ToString("O")}:{_TITLE} , return {rj.ToString()}");
-            //else
-            //C_Common.WriteLog(_TITLE, $"{DateTime.Now.ToString("O")}:{_TITLE} data:{json}, return {rj.ToString()}");
+            new ApiLogModel(this.GetType(), ErrorType.日志, user.UserName, rj.ToString(), rdModel.ToString(), "出库单完成:").SQLLog(); //日志输出 
+             
             return rj;
         }
          

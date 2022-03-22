@@ -19,5 +19,10 @@ namespace WEB_API.Models.U8API
         /// 单据信息
         /// </summary>
         public T VoucherData { get; set; }
+
+        public override string ToString()
+        {
+            return $"{nameof(Login)}: {Login}, {nameof(VoucherData)}: {VoucherData}";
+        }
     }
 }

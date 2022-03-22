@@ -1,0 +1,29 @@
+﻿CREATE TABLE [dbo].[ApiLog](
+	[cType] [nvarchar](50) NULL,
+	[cUserName] [nvarchar](50) NULL,
+	[iErrorlevel] [int] NULL,
+	[cReturnData] [nvarchar](max) NULL,
+	[cInputData] [nvarchar](max) NULL,
+	[dDate] [datetime] NOT NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO 
+ 
+CREATE TABLE [dbo].[ApiLog](
+   [cClassType] [nvarchar](50) NULL,
+	[cType] [nvarchar](50) NULL,
+	[cUserName] [nvarchar](50) NULL,
+	[iErrorlevel] [int] NULL,
+	[cReturnData] [nvarchar](max) NULL,
+	[cInputData] [nvarchar](max) NULL,
+	[cMesg] [nvarchar](max) NULL,
+
+	[dDate] [datetime] NOT NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+ 
+
+insert into ApiUser(CallerName,UserName,UserPWd,IAdmin) values ('第三方调用','第三方调用','du*2Xtu',0)
+select * from ApiUser
+
+  
+

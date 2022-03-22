@@ -185,6 +185,9 @@
     <Compile Include="Controllers\API\U8API\Base\U8ApiBaseController.cs" />
     <Compile Include="Controllers\API\U8API\DispatchListController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Filter\ApiActionAttribute.cs" />
+    <Compile Include="Filter\ApiExceptionAttribute.cs" />
+    <Compile Include="Filter\HttpAuthHeaderFilter.cs" />
     <Compile Include="Filter\MyAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -199,14 +202,17 @@
     <Compile Include="Models\U8API\CoVoucherModel.cs" />
     <Compile Include="Models\U8API\Rdrecord32Model.cs" />
     <Compile Include="Models\U8API\U8LoginModel.cs" />
-    <Compile Include="Models\UasrModelModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\U8API\DispatchListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\Crypto.cs" />
     <Compile Include="Tools\JwtHelp.cs" />
+    <Compile Include="Tools\Log4Help.cs" />
+    <Compile Include="Models\ApiLogModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ApiSQL\TextFile1.txt" />
     <Content Include="App_Data\APISystemData.mdf" />
     <Content Include="App_Data\APISystemData_log.ldf">
       <DependentUpon>APISystemData.mdf</DependentUpon>

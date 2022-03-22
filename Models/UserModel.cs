@@ -8,8 +8,13 @@ namespace WEB_API.Models
     /// <summary>
     /// 返回说明
     /// </summary>
-    public class UasrModel
+    public class UserModel
     {
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        public string UserId { get; set; }
+
         /// <summary>
         /// 用户名
         /// </summary>

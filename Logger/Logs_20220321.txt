@@ -1,0 +1,4 @@
+
+----------------------header--------------------------
+2022-03-21 17:59:42,002 [6] INFO  WEB_API.Controllers.U8API.DispatchListController - 2022-03-21T17:59:41.9471662+08:00:DLID: string, cDLCode: , dDateStart: , dDateEnd: , dverifysystimeStart: , dverifysystimeEnd: , bReturnFlag: , iCloser: 
+2022-03-21 17:59:46,979 [6] ERROR WEB_API.Controllers.U8API.DispatchListController - 2022-03-21T17:59:46.9784474+08:00:在将 varchar 值 'string' 转换成数据类型 int 时失败。
