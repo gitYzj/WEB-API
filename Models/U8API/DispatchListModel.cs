@@ -14,26 +14,26 @@ namespace WEB_API.Models.U8API
         /// <summary>
         /// 编码
         /// </summary>
-       public string DLID { get; set; }
+       public int DLID { get; set; }
         /// <summary>
         /// 单据号
         /// </summary>
         public string cDLCode { get; set; }
         /// <summary>
-        /// 单据日期
+        /// 单据日期 yyyy-MM-dd
         /// </summary>
         public string dDateStart { get; set; }
         /// <summary>
-        /// 单据日期
+        /// 单据日期 yyyy-MM-dd
         /// </summary>
         public string dDateEnd { get; set; }
 
         /// <summary>
-        /// 审核时间
+        /// 审核时间 yyyy-MM-dd hh:mm:ss
         /// </summary>
         public string dverifysystimeStart { get; set; }
         /// <summary>
-        /// 审核时间
+        /// 审核时间 yyyy-MM-dd hh:mm:ss
         /// </summary>
         public string dverifysystimeEnd { get; set; }
         /// <summary>
@@ -46,7 +46,7 @@ namespace WEB_API.Models.U8API
         public string iCloser { get; set; }
 
         public override string ToString()
-        {
+        { 
             return $"{nameof(DLID)}: {DLID}, {nameof(cDLCode)}: {cDLCode}, {nameof(dDateStart)}: {dDateStart}, {nameof(dDateEnd)}: {dDateEnd}, {nameof(dverifysystimeStart)}: {dverifysystimeStart}, {nameof(dverifysystimeEnd)}: {dverifysystimeEnd}, {nameof(bReturnFlag)}: {bReturnFlag}, {nameof(iCloser)}: {iCloser}";
         }
     }
@@ -59,16 +59,16 @@ namespace WEB_API.Models.U8API
         /// <summary>
         /// 发货退货单主表标识
         /// </summary> 
-        public string DLID { get; set; }
+        public int DLID { get; set; }
 
         /// <summary>
         /// 发货退货单子表标识
         /// </summary>
-        public string AutoID { get; set; }
+        public int AutoID { get; set; }
         /// <summary>
         /// 发货退货单子表标识
         /// </summary>
-        public string iDLsID { get; set; }
+        public int iDLsID { get; set; }
 
         /// <summary>
         /// 存货编码
@@ -102,7 +102,7 @@ namespace WEB_API.Models.U8API
         /// <summary>
         /// 汇率
         /// </summary>
-        public string iExchRate { get; set; }
+        public decimal iExchRate { get; set; }
         /// <summary>
         /// 业务类型
         /// </summary>
@@ -110,11 +110,11 @@ namespace WEB_API.Models.U8API
         /// <summary>
         /// 制单时间
         /// </summary>
-        public string dcreatesystime { get; set; }
+        public DateTime dcreatesystime { get; set; }
         /// <summary>
         /// 审核时间
         /// </summary>
-        public string dverifysystime { get; set; }
+        public DateTime dverifysystime { get; set; }
         /// <summary>
         /// 是否退货
         /// </summary>
@@ -159,7 +159,7 @@ namespace WEB_API.Models.U8API
         /// <summary>
         /// 发货退货单主表标识
         /// </summary>
-        public string DLID { get; set; }
+        public int DLID { get; set; }
 
         /// <summary>
         /// 修改人
@@ -200,11 +200,11 @@ namespace WEB_API.Models.U8API
         /// <summary>
         /// 数量
         /// </summary>
-        public string iQuantity { get; set; }
+        public decimal iQuantity { get; set; }
         /// <summary>
         /// 件数
         /// </summary>
-        public string iNum { get; set; }
+        public decimal iNum { get; set; }
         /// <summary>
         /// 项目编码
         /// </summary>
@@ -216,39 +216,39 @@ namespace WEB_API.Models.U8API
         /// <summary>
         /// 原币无税金额
         /// </summary>
-        public string iMoney { get; set; }
+        public decimal iMoney { get; set; }
         /// <summary>
         /// 原币税额
         /// </summary>
-        public string iTax { get; set; }
+        public decimal iTax { get; set; }
         /// <summary>
         /// 原币价税合计
         /// </summary>
-        public string iSum { get; set; }
+        public decimal iSum { get; set; }
         /// <summary>
         /// 原币折扣额 
         /// </summary>
-        public string iDisCount { get; set; }
+        public decimal iDisCount { get; set; }
         /// <summary>
         /// 本币无税单价
         /// </summary>
-        public string iNatUnitPrice { get; set; }
+        public decimal iNatUnitPrice { get; set; }
         /// <summary>
         /// 本币无税金额 
         /// </summary>
-        public string iNatMoney { get; set; }
+        public decimal iNatMoney { get; set; }
         /// <summary>
         /// 本币税额
         /// </summary>
-        public string iNatTax { get; set; }
+        public decimal iNatTax { get; set; }
         /// <summary>
         /// 本币价税合计 
         /// </summary>
-        public string iNatSum { get; set; }
+        public decimal iNatSum { get; set; }
         /// <summary>
         /// 本币折扣额 
         /// </summary>
-        public string iNatDisCount { get; set; }
+        public decimal iNatDisCount { get; set; }
         /// <summary>
         /// 订单行号 
         /// </summary>
