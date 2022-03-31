@@ -40,12 +40,18 @@ namespace WEB_API.Controllers.API.U8API
         [MyAuthorizeAttribute] 
         public ApiReturnModel<object> AddVoucherLogin([FromBody] CoVoucherModel<Rdrecord32Model> rdModel)
         {
-            UserModel user = (UserModel)HttpContext.Current.Items["User"];
-            //Log4Helper.Info(this.GetType(), $"{DateTime.Now.ToString("O")}:{_TITLE} Rdrecord32"); 
+            UserModel user = (UserModel)HttpContext.Current.Items["User"]; 
             ApiReturnModel<object> rj;
             try
             {
                 new ApiLogModel(this.GetType(), ErrorType.日志, user.UserName, "", rdModel.ToString(), "获取发货单列表完成").SQLLog(); //日志输出 
+
+
+
+
+
+
+
                 rj = base.AddVoucherLogin(rdModel);
                 //if (rj.Flag == 1)
                 //{
