@@ -12,9 +12,9 @@ namespace WEB_API.Models.U8API
     public class DispatchListGetModel
     {
         /// <summary>
-        /// 编码
+        /// 编码 int
         /// </summary>
-       public int DLID { get; set; }
+       public string DLID { get; set; }
         /// <summary>
         /// 单据号
         /// </summary>
@@ -60,16 +60,7 @@ namespace WEB_API.Models.U8API
         /// 发货退货单主表标识
         /// </summary> 
         public int DLID { get; set; }
-
-        /// <summary>
-        /// 发货退货单子表标识
-        /// </summary>
-        public int AutoID { get; set; }
-        /// <summary>
-        /// 发货退货单子表标识
-        /// </summary>
-        public int iDLsID { get; set; }
-
+         
         /// <summary>
         /// 存货编码
         /// </summary>
@@ -136,15 +127,7 @@ namespace WEB_API.Models.U8API
         /// <summary>
         /// 备注
         /// </summary>
-        public string cMemo { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-       public string cinvoicecompany { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-       public string cInvoicecusname { get; set; }
+        public string cMemo { get; set; } 
      
         /// <summary>
         /// 表体
@@ -213,42 +196,7 @@ namespace WEB_API.Models.U8API
         /// 项目大类编码
         /// </summary>
         public string cItem_class { get; set; }
-        /// <summary>
-        /// 原币无税金额
-        /// </summary>
-        public decimal iMoney { get; set; }
-        /// <summary>
-        /// 原币税额
-        /// </summary>
-        public decimal iTax { get; set; }
-        /// <summary>
-        /// 原币价税合计
-        /// </summary>
-        public decimal iSum { get; set; }
-        /// <summary>
-        /// 原币折扣额 
-        /// </summary>
-        public decimal iDisCount { get; set; }
-        /// <summary>
-        /// 本币无税单价
-        /// </summary>
-        public decimal iNatUnitPrice { get; set; }
-        /// <summary>
-        /// 本币无税金额 
-        /// </summary>
-        public decimal iNatMoney { get; set; }
-        /// <summary>
-        /// 本币税额
-        /// </summary>
-        public decimal iNatTax { get; set; }
-        /// <summary>
-        /// 本币价税合计 
-        /// </summary>
-        public decimal iNatSum { get; set; }
-        /// <summary>
-        /// 本币折扣额 
-        /// </summary>
-        public decimal iNatDisCount { get; set; }
+          
         /// <summary>
         /// 订单行号 
         /// </summary>
