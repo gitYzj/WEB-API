@@ -5,6 +5,38 @@ using System.Web;
 
 namespace WEB_API.Models.U8API
 {
+    public class DispatchListRd32AddModel
+    {
+        /// <summary>
+        /// 单据号
+        /// </summary>
+        public string cCode { get; set; }
+        /// <summary>
+        /// 发货单主表id
+        /// </summary>
+        public string DLID { get; set; }
+        /// <summary>
+        /// 数据
+        /// </summary>
+
+        public List<DispatchListRd32sAddModel> BodyList { get; set; }
+          
+    }
+    public class DispatchListRd32sAddModel
+    {  
+        /// <summary>
+        /// 子表标识
+        /// </summary>
+        public string iDLsID { get; set; }
+        /// <summary>
+        /// 数量(主计量)
+        /// </summary>
+        public decimal iQuantity { get; set; }
+
+    }
+
+
+
     public class Rdrecord32Model
     {
         /// <summary>
@@ -295,7 +327,7 @@ namespace WEB_API.Models.U8API
         /// <summary>
         /// 必须 数量
         /// </summary>
-        public string iQuantity { get; set; }//(U8100)   decimal 17  True
+        public decimal iQuantity { get; set; }//(U8100)   decimal 17  True
         /// <summary>
         /// 重要 单价
         /// </summary>

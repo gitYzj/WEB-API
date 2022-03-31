@@ -12,7 +12,7 @@ namespace WEB_API.Models.U8API
     public class CoVoucherModel<T>
     {
         /// <summary>
-        /// 登录信息
+        /// 登录信息 (默认不用传)
         /// </summary>
         public U8LoginModel Login { get; set; }
         /// <summary>
