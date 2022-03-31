@@ -48,7 +48,7 @@ namespace WEB_API.Controllers.U8API
                 if (!string.IsNullOrEmpty(dlModel.iCloser) && dlModel.iCloser == "1") sqlWhere += "and cCloser is not null "; //关闭的
                 else
                     sqlWhere += "and cCloser is  null "; //不关闭 
-                if (!string.IsNullOrEmpty(dlModel.DLID)) sqlWhere += $" and dl.DLID='{dlModel.DLID}'";
+                if (!string.IsNullOrEmpty(dlModel.DLID.ToString())) sqlWhere += $" and dl.DLID='{dlModel.DLID}'";
                 if (!string.IsNullOrEmpty(dlModel.cDLCode)) sqlWhere += $" and dl.cDLCode='{dlModel.cDLCode}'";
                 if (!string.IsNullOrEmpty(dlModel.dDateStart)) sqlWhere += $" and dDate>='{dlModel.dDateStart}'";
                 if (!string.IsNullOrEmpty(dlModel.dDateEnd)) sqlWhere += $" and dDate<='{dlModel.dDateEnd}'";
