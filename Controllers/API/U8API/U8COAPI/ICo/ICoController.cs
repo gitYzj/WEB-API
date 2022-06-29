@@ -33,19 +33,23 @@ namespace HzyaMVCWebApiService.Controllers.ApiCO.Interface.ICo
             }
             if (string.IsNullOrEmpty(login.Password))
             {
-                login.AccId = System.Configuration.ConfigurationManager.AppSettings["pPassword"];
+                login.Password = System.Configuration.ConfigurationManager.AppSettings["pPassword"];
             }
             if (string.IsNullOrEmpty(login.UserId))
             {
-                login.AccId = System.Configuration.ConfigurationManager.AppSettings["pUserId"];
+                login.UserId = System.Configuration.ConfigurationManager.AppSettings["pUserId"];
             }
 
             if (string.IsNullOrEmpty(login.Date))
             {
                 login.Date = DateTime.Now.ToString("yyyy-MM-dd");
+            }
+           
+            if (string.IsNullOrEmpty(login.YearId))
+            {
                 login.YearId = DateTime.Now.Year.ToString();
-            } 
-            return login;
+             }
+                return login;
         }
 
         /// <summary>

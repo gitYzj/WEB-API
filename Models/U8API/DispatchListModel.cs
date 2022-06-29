@@ -16,7 +16,7 @@ namespace WEB_API.Models.U8API
         /// </summary>
        public string DLID { get; set; }
         /// <summary>
-        /// 单据号
+        /// 单据号 模糊 like
         /// </summary>
         public string cDLCode { get; set; }
         /// <summary>
@@ -45,6 +45,19 @@ namespace WEB_API.Models.U8API
         /// </summary>
         public string iCloser { get; set; }
 
+
+        /// <summary>
+        /// 客户名称 模糊 like
+        /// </summary>
+        public string cCusName { get; set; }
+
+        /// <summary>
+        /// 存货名称 模糊 like
+        /// </summary>
+        public string cInvName { get; set; }
+ 
+
+
         public override string ToString()
         { 
             return $"{nameof(DLID)}: {DLID}, {nameof(cDLCode)}: {cDLCode}, {nameof(dDateStart)}: {dDateStart}, {nameof(dDateEnd)}: {dDateEnd}, {nameof(dverifysystimeStart)}: {dverifysystimeStart}, {nameof(dverifysystimeEnd)}: {dverifysystimeEnd}, {nameof(bReturnFlag)}: {bReturnFlag}, {nameof(iCloser)}: {iCloser}";
@@ -58,34 +71,35 @@ namespace WEB_API.Models.U8API
     {
         /// <summary>
         /// 发货退货单主表标识
-        /// </summary> 
-        public int DLID { get; set; }
-         
-        /// <summary>
-        /// 存货编码
         /// </summary>
-        public string cInvCode { get; set; }
-         
+        public int DLID { get; set; }
         /// <summary>
         /// 发货退货单号
         /// </summary>
-        public string cDLCode  { get; set; }
+        public string cDLCode { get; set; }
         /// <summary>
         /// 单据日期
         /// </summary>
-        public string dDate { get; set; }
+
+        public DateTime dDate { get; set; }
         /// <summary>
         /// 部门编码
         /// </summary>
+        /// <returns></returns>
         public string cDepCode { get; set; }
         /// <summary>
         /// 部门名称
         /// </summary>
+        /// <returns></returns>
         public string cDepName { get; set; }
         /// <summary>
         /// 业务员编码
         /// </summary>
         public string cPersonCode { get; set; }
+        /// <summary>
+        /// 业务员
+        /// </summary>
+        public string cPsn_Name { get; set; }
         /// <summary>
         /// 币种名称
         /// </summary>
@@ -93,9 +107,10 @@ namespace WEB_API.Models.U8API
         /// <summary>
         /// 汇率
         /// </summary>
+
         public decimal iExchRate { get; set; }
-        /// <summary>
-        /// 业务类型
+        /// <业务类型>
+        /// cbustype
         /// </summary>
         public string cbustype { get; set; }
         /// <summary>
@@ -109,26 +124,28 @@ namespace WEB_API.Models.U8API
         /// <summary>
         /// 是否退货
         /// </summary>
-        public string bReturnFlag { get; set; }
-        public string cDefine4 { get; set; }
+        public int bReturnFlag { get; set; }
         /// <summary>
-        /// 单据状态
+        /// VouchState
         /// </summary>
         public string VouchState { get; set; }
-
+        /// <summary>
+        /// 客户编码
+        /// </summary>
+        public string cCusCode { get; set; }
+        /// <summary>
+        /// 客户名称
+        /// </summary>
+        public string cCusName { get; set; }
         /// <summary>
         /// 收发类别
         /// </summary>
         public string cRdCode { get; set; }
         /// <summary>
-        /// 销售类型编码
-        /// </summary>
-        public string cSTCode { get; set; }
-        /// <summary>
         /// 备注
         /// </summary>
-        public string cMemo { get; set; } 
-     
+        public string cMemo { get; set; }
+         
         /// <summary>
         /// 表体
         /// </summary>
@@ -143,25 +160,8 @@ namespace WEB_API.Models.U8API
         /// 发货退货单主表标识
         /// </summary>
         public int DLID { get; set; }
-
         /// <summary>
-        /// 修改人
-        /// </summary>
-        public string cmodifier { get; set; }
-        /// <summary>
-        /// 销售订单子表标识
-        /// </summary>
-        public string iSOsID { get; set; }
-        /// <summary>
-        /// 销售订单号
-        /// </summary>
-        public string cSoCode { get; set; }
-        /// <summary>
-        /// 需求跟踪方式（1-销售订单行号；4-需求分类号；5-销售订单号）
-        /// </summary>
-        public string idemandtype { get; set; }//需求跟踪方式（1-销售订单行号；4-需求分类号；5-销售订单号）
-        /// <summary>
-        /// 发货退货单子表标识
+        /// 发货单子表标识
         /// </summary>
         public string iDLsID { get; set; }
         /// <summary>
@@ -169,11 +169,15 @@ namespace WEB_API.Models.U8API
         /// </summary>
         public string cWhCode { get; set; }
         /// <summary>
-        /// 存货编码 
+        /// 仓库名称
+        /// </summary>
+        public string cWhName { get; set; }
+        /// <summary>
+        /// 存货编码
         /// </summary>
         public string cInvCode { get; set; }
         /// <summary>
-        /// 存货名称 
+        /// 存货名称
         /// </summary>
         public string cInvName { get; set; }
         /// <summary>
@@ -181,34 +185,44 @@ namespace WEB_API.Models.U8API
         /// </summary>
         public string cInvStd { get; set; }
         /// <summary>
-        /// 数量
+        /// 主计量单位
+        /// </summary>
+        public string  cComunitName { get; set; }
+        /// <summary>
+        /// 主计量
         /// </summary>
         public decimal iQuantity { get; set; }
         /// <summary>
-        /// 件数
+        /// 辅助计量单位
+        /// </summary>
+        public string cAccComunitName { get; set; }
+        /// <summary>
+        /// 辅助计量
         /// </summary>
         public decimal iNum { get; set; }
         /// <summary>
-        /// 项目编码
+        /// 项目号
         /// </summary>
         public string cItemCode { get; set; }
         /// <summary>
-        /// 项目大类编码
+        /// 项目大类
         /// </summary>
         public string cItem_class { get; set; }
-          
         /// <summary>
-        /// 订单行号 
+        /// 订单号
         /// </summary>
-        public string iorderrowno { get; set; }//||订单行号 
+        public string cSoCode { get; set; }
+        
         /// <summary>
         /// 批号
         /// </summary>
-        public string cBatch { get; set; }//批号
+        public string cBatch { get; set; }
+        
         /// <summary>
         /// 备注
         /// </summary>
-        public string cMemo { get; set; }//备注
+        public string cMemo { get; set; }
+        
 
     }
 }

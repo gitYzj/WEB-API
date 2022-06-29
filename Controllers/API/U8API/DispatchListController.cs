@@ -39,23 +39,27 @@ namespace WEB_API.Controllers.U8API
         {
             UserModel user = (UserModel)HttpContext.Current.Items["User"];
             try
-            {
-
+            { 
                 new ApiLogModel(this.GetType(), ErrorType.日志, user.UserName, "", dlModel.ToString(), "获取发货单列表").SQLLog(); //日志输出
 
                 //Log4Helper.Info(this.GetType(), $"{DateTime.Now.ToString("O")}:{dlModel.ToString()}");
-                string sqlWhere = "where 1=1 "; //不关闭的
-                if (!string.IsNullOrEmpty(dlModel.iCloser) && dlModel.iCloser == "1") sqlWhere += "and cCloser is not null "; //关闭的
-                else
-                    sqlWhere += "and cCloser is  null "; //不关闭 
-                if (!string.IsNullOrEmpty(dlModel.DLID.ToString())) sqlWhere += $" and dl.DLID='{dlModel.DLID}'";
-                if (!string.IsNullOrEmpty(dlModel.cDLCode)) sqlWhere += $" and dl.cDLCode='{dlModel.cDLCode}'";
+                string sqlWhere = "where 1=1 and isnull(fOutQuantity,0)< iQuantity and cverifier is not null and cCloser is null"; //不关闭的
+                //if (!string.IsNullOrEmpty(dlModel.iCloser) && dlModel.iCloser == "1") sqlWhere += " and cCloser is not null "; //关闭的
+                //else
+                //    sqlWhere += " and cCloser is null "; //不关闭 
+                if (!string.IsNullOrEmpty(dlModel.DLID?.ToString())) sqlWhere += $" and dl.DLID='{dlModel.DLID}'";
+                if (!string.IsNullOrEmpty(dlModel.cDLCode)) sqlWhere += $" and dl.cDLCode like '%{dlModel.cDLCode}%'";
                 if (!string.IsNullOrEmpty(dlModel.dDateStart)) sqlWhere += $" and dDate>='{dlModel.dDateStart}'";
                 if (!string.IsNullOrEmpty(dlModel.dDateEnd)) sqlWhere += $" and dDate<='{dlModel.dDateEnd}'";
                 if (!string.IsNullOrEmpty(dlModel.dverifysystimeStart)) sqlWhere += $" and dverifysystime>='{dlModel.dverifysystimeStart}'";
                 if (!string.IsNullOrEmpty(dlModel.dverifysystimeEnd)) sqlWhere += $" and dverifysystime<='{dlModel.dverifysystimeEnd}'";
                 if (!string.IsNullOrEmpty(dlModel.bReturnFlag)) sqlWhere += $" and bReturnFlag='{dlModel.bReturnFlag}'";
 
+                if (!string.IsNullOrEmpty(dlModel.cCusName)) sqlWhere += $" and cus.cCusName like '%{dlModel.cCusName}%'";
+                if (!string.IsNullOrEmpty(dlModel.cInvName)) sqlWhere += $" and inv.cInvName like '%{dlModel.cInvName}%'";
+
+
+                 
                 ////单据变动时间
                 //string cDefine4Start = json["cDefine4Start"]?.ToString();
                 ////单据变动时间
@@ -76,55 +80,45 @@ dl.DLID --发货退货单主表标识
  ,dep.cDepCode --部门编码
  ,dep.cDepName --部门名称
  ,cPersonCode --业务员编码
+ ,hr_hi_person.cPsn_Name 
  ,cexch_name --币种名称
  ,iExchRate --汇率 
 ,cbustype --业务类型
 ,CONVERT(varchar(100),dcreatesystime, 20) dcreatesystime--制单时间
 ,CONVERT(varchar(100),dverifysystime , 20) dverifysystime--审核时间  
-,bReturnFlag --是否退货 
-,CONVERT(varchar(100),cDefine4, 20) cDefine4
+,bReturnFlag --是否退货  
 ,case when ccloser is not null then '关闭' when cverifier is not null then '审核' when cchanger is not null then '变更' else '开立'   end VouchState
 ,dl.cCusCode
-,dl.cCusCode --客户编码
-,dl.cRdCode --收发类别
-,dl.cSTCode  --销售类型编码 
-,dl.cMemo -- 备注  
-,dl.cinvoicecompany
-,dl.cInvoicecusname
+,cus.cCusName --客户编码
+,dl.cRdCode --收发类别 
+,dl.cMemo -- 备注   
 
 ,dls.DLID
-,dls.iSOsID
-,dls.cSoCode
-,dls.idemandtype --需求跟踪方式（1-销售订单行号；4-需求分类号；5-销售订单号）
 ,dls.iDLsID 
 ,dls.cWhCode 
+,Warehouse.cWhName
 ,inv.cInvCode 
 ,inv.cInvName 
 ,inv.cInvStd 
-,dls.iQuantity
+,zcu.cComUnitName cComunitName
+,dls.iQuantity ,asscu.cComUnitName
+,asscu.cComUnitName cAccComunitName
 ,dls.iNum 
 ,dls.cItemCode
-,dls.cItem_class 
-,dls.iMoney	
-,dls.iTax	
-,dls.iSum	
-,dls.iDisCount	
-,dls.iNatUnitPrice	
-,dls.iNatMoney	
-,dls.iNatTax	
-,dls.iNatSum	
-,dls.iNatDisCount
-,dls.idemandtype --||订单类型
-,dls.iSOsID--||订单子表id 
-,dls.cSoCode --||订单号
-,dls.iorderrowno --||订单行号 
+,dls.cItem_class   
+,dls.cSoCode --||订单号 
 ,dls.cBatch --批号
-,dls.cMemo -- 备注 
-
+,dls.cMemo -- 备注  
  from DispatchList dl 
 left join Department  dep on dep.cDepCode=dl.cDepCode
+left join hr_hi_person on dl.cPersonCode=hr_hi_person.cPsn_Num
+left join Customer  cus on cus.cCusCode=dl.cCusCode
 left join DispatchLists dls on dls.DLID=dl.DLID
-join inventory inv on inv.cInvCode=dls.cInvCode
+join inventory inv on inv.cInvCode=dls.cInvCode 
+left join Warehouse on Warehouse.cWhCode=dls.cWhCode 
+left join ComputationUnit zcu on inv.cComUnitCode=zcu.cComunitCode
+left join ComputationUnit asscu on dls.cUnitID  =asscu.cComUnitCode 
+
 {sqlWhere}
 order by cDefine4,dverifysystime;
             ", (course, location) =>

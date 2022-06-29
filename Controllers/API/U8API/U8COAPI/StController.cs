@@ -3,9 +3,11 @@ using HzyaU8COInterface.CO;
 using HzyaU8COInterface.Model;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Newtonsoft.Json;
 using WEB_API.Filter;
 using WEB_API.Models;
 using WEB_API.Models.U8API;
@@ -35,21 +37,37 @@ namespace HzyaMVCWebApiService.Controllers.ApiCO.Interface
         /// <param name="json"></param>
         /// <returns></returns> 
         [ApiExplorerSettings(IgnoreApi = true)]
-        internal virtual ApiReturnModel<object> AddVoucherLogin([FromBody] CoVoucherModel<Rdrecord32Model> rdModel)
+        internal virtual ApiReturnModel<object> AddVoucherLogin([FromBody] CoVoucherModel<ApiVocModel<Rdrecord32Model, List<Rdrecords32Model>>> rdModel)
         {
             try
-            {
-                //登录对象补充
-                rdModel.Login = InitLogin(rdModel.Login); 
+            { 
+
+                ////登录对象补充
+                //rdModel.Login = InitLogin(rdModel.Login); 
                 Result result = null;
-                result = _STCO.Init("SA", rdModel.Login.AccId, rdModel.Login.YearId, rdModel.Login.UserId, rdModel.Login.Password, rdModel.Login.Date, rdModel.Login.Srv);
-                if (!result.Success)
-                {
-                    return new ApiReturnModel<object>(-1, result.ErrMsgRet);
-                }
-                JObject voucherJson = JObject.FromObject(rdModel);
+                //result = _STCO.Init("ST", rdModel.Login.AccId, rdModel.Login.YearId, rdModel.Login.UserId, rdModel.Login.Password, rdModel.Login.Date, rdModel.Login.Srv);
+
+                //new ApiLogModel(this.GetType(), ErrorType.警告, "", "", $"{rdModel.Login.AccId??"空"}, {rdModel.Login.YearId ?? "空"}, {rdModel.Login.UserId ?? "空"}, {rdModel.Login.Password ?? "空"}, {rdModel.Login.Date ?? "空"}, {rdModel.Login.Srv ?? "空"}", "登录信息:").SQLLog(); //日志输出 
+
+
+                //if (!result.Success)
+                //{
+                //    return new ApiReturnModel<object>(-1, result.ErrMsgRet);
+                //}
+
+                 
+                JsonSerializerSettings jsonSetting = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
+                 
+                jsonSetting.DateFormatHandling = Newtonsoft.Json.DateFormatHandling.MicrosoftDateFormat;
+                //空值处理  
+                jsonSetting.NullValueHandling = NullValueHandling.Ignore;  
+                string messageOut = JsonConvert.SerializeObject(rdModel.VoucherData, Formatting.Indented, jsonSetting);
+                 
+                JObject voucherJson = JObject.Parse(messageOut); 
                 voucherJson.Add("domPosition", new JArray());
+
                 result = _STCO.AddNewVoucherJson(voucherJson.ToString());
+             
                 if (!result.Success)
                 {
                     return new ApiReturnModel<object>(-1, result.ErrMsgRet);

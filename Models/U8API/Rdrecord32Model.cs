@@ -11,16 +11,33 @@ namespace WEB_API.Models.U8API
         /// 单据号
         /// </summary>
         public string cCode { get; set; }
+
         /// <summary>
         /// 发货单主表id
         /// </summary>
         public string DLID { get; set; }
+
+        /// <summary>
+        /// 车牌号
+        /// </summary>
+        public string CarNumber { get; set; }
+
         /// <summary>
         /// 数据
         /// </summary>
 
         public List<DispatchListRd32sAddModel> BodyList { get; set; }
-          
+
+        public override string ToString()
+        {
+            string bodyString = "";
+            foreach (var rdrecords32Model in BodyList)
+            {
+                bodyString = $"{rdrecords32Model.ToString()},";
+            }
+
+            return $"{nameof(cCode)}: {cCode}, {nameof(DLID)}: {DLID}, {nameof(BodyList)}: [{bodyString}]";
+        }
     }
     public class DispatchListRd32sAddModel
     {  
@@ -32,7 +49,11 @@ namespace WEB_API.Models.U8API
         /// 数量(主计量)
         /// </summary>
         public decimal iQuantity { get; set; }
-
+         
+        public override string ToString()
+        {
+            return $"{nameof(iDLsID)}: {iDLsID??""??""}, {nameof(iQuantity)}: {iQuantity}";
+        }
     }
 
 
@@ -64,7 +85,7 @@ namespace WEB_API.Models.U8API
         /// <summary>
         /// 单据日期
         /// </summary>
-        public string dDate { get; set; }//(U8100)  单据日期 datetime 8  False 
+        public string ddate { get; set; }//(U8100)  单据日期 datetime 8  False 
         /// <summary>
         /// 到货日期
         /// </summary>
@@ -294,15 +315,23 @@ namespace WEB_API.Models.U8API
         /// </summary>
         public string cAccounter { get; set; }//(U8100)  记账人
 
-        public List<Rdrecords32Model> body { get; set; } = new List<Rdrecords32Model>();
+        public string DLID { get; set; }
+         
 
         public override string ToString()
         {
-            return $"{nameof(cCode)}: {cCode}, {nameof(cBusType)}: {cBusType}, {nameof(cSource)}: {cSource}, {nameof(cVouchType)}: {cVouchType}, {nameof(cRdCode)}: {cRdCode}, {nameof(dDate)}: {dDate}, {nameof(dARVDate)}: {dARVDate}, {nameof(dVeriDate)}: {dVeriDate}, {nameof(cMaker)}: {cMaker}, {nameof(bRdFlag)}: {bRdFlag}, {nameof(cMemo)}: {cMemo}, {nameof(VT_ID)}: {VT_ID}, {nameof(iMQuantity)}: {iMQuantity}, {nameof(cChkPerson)}: {cChkPerson}, {nameof(cBusCode)}: {cBusCode}, {nameof(cDLCode)}: {cDLCode}, {nameof(cSTCode)}: {cSTCode}, {nameof(cWhCode)}: {cWhCode}, {nameof(cExch_Name)}: {cExch_Name}, {nameof(cDefine15)}: {cDefine15}, {nameof(cDefine9)}: {cDefine9}, {nameof(cDefine8)}: {cDefine8}, {nameof(cVenCode)}: {cVenCode}, {nameof(cDefine13)}: {cDefine13}, {nameof(cDefine1)}: {cDefine1}, {nameof(cDefine5)}: {cDefine5}, {nameof(cShipAddress)}: {cShipAddress}, {nameof(gspcheck)}: {gspcheck}, {nameof(cDefine3)}: {cDefine3}, {nameof(cCusCode)}: {cCusCode}, {nameof(cinvoicecompany)}: {cinvoicecompany}, {nameof(cEBExpressCode)}: {cEBExpressCode}, {nameof(cProBatch)}: {cProBatch}, {nameof(cDefine7)}: {cDefine7}, {nameof(cDepCode)}: {cDepCode}, {nameof(isalebillid)}: {isalebillid}, {nameof(cChkCode)}: {cChkCode}, {nameof(cARVCode)}: {cARVCode}, {nameof(cCurrentAuditor)}: {cCurrentAuditor}, {nameof(biafirst)}: {biafirst}, {nameof(cPTCode)}: {cPTCode}, {nameof(cDefine12)}: {cDefine12}, {nameof(cDefine2)}: {cDefine2}, {nameof(bpufirst)}: {bpufirst}, {nameof(cOrderCode)}: {cOrderCode}, {nameof(cDefine4)}: {cDefine4}, {nameof(iExchRate)}: {iExchRate}, {nameof(cModifyPerson)}: {cModifyPerson}, {nameof(cSourceLs)}: {cSourceLs}, {nameof(cDefine6)}: {cDefine6}, {nameof(iDiscountTaxType)}: {iDiscountTaxType}, {nameof(cDefine10)}: {cDefine10}, {nameof(dChkDate)}: {dChkDate}, {nameof(cDefine16)}: {cDefine16}, {nameof(ID)}: {ID}, {nameof(cPersonCode)}: {cPersonCode}, {nameof(cDefine14)}: {cDefine14}, {nameof(bOMFirst)}: {bOMFirst}, {nameof(cDefine11)}: {cDefine11}, {nameof(caddcode)}: {caddcode}, {nameof(cAccounter)}: {cAccounter}, {nameof(body)}: {body}";
+            //string bodyString = "";
+            //foreach (var rdrecords32Model in body)
+            //{
+            //    bodyString = $"{rdrecords32Model.ToString()},";
+            //}
+
+            return $"{nameof(cCode)}: {cCode??""}, {nameof(cBusType)}: {cBusType ?? ""}, {nameof(cSource)}: {cSource ??""}, {nameof(cVouchType)}: {cVouchType ?? ""??""}, {nameof(cRdCode)}: {cRdCode ?? ""}, {nameof(ddate)}: {ddate ?? ""}, {nameof(dARVDate)}: {dARVDate ?? ""}, {nameof(dVeriDate)}: {dVeriDate ?? ""}, {nameof(cMaker)}: {cMaker ??""}, {nameof(bRdFlag)}: {bRdFlag??""}, {nameof(cMemo)}: {cMemo??""}, {nameof(VT_ID)}: {VT_ID??""}, {nameof(iMQuantity)}: {iMQuantity??""}, {nameof(cChkPerson)}: {cChkPerson??""}, {nameof(cBusCode)}: {cBusCode??""}, {nameof(cDLCode)}: {cDLCode??""}, {nameof(cSTCode)}: {cSTCode??""}, {nameof(cWhCode)}: {cWhCode??""}, {nameof(cExch_Name)}: {cExch_Name??""}, {nameof(cDefine15)}: {cDefine15??""}, {nameof(cDefine9)}: {cDefine9??""}, {nameof(cDefine8)}: {cDefine8??""}, {nameof(cVenCode)}: {cVenCode??""}, {nameof(cDefine13)}: {cDefine13??""}, {nameof(cDefine1)}: {cDefine1??""}, {nameof(cDefine5)}: {cDefine5??""}, {nameof(cShipAddress)}: {cShipAddress??""}, {nameof(gspcheck)}: {gspcheck??""}, {nameof(cDefine3)}: {cDefine3??""}, {nameof(cCusCode)}: {cCusCode??""}, {nameof(cinvoicecompany)}: {cinvoicecompany??""}, {nameof(cEBExpressCode)}: {cEBExpressCode??""}, {nameof(cProBatch)}: {cProBatch??""}, {nameof(cDefine7)}: {cDefine7??""}, {nameof(cDepCode)}: {cDepCode??""}, {nameof(isalebillid)}: {isalebillid??""}, {nameof(cChkCode)}: {cChkCode??""}, {nameof(cARVCode)}: {cARVCode??""}, {nameof(cCurrentAuditor)}: {cCurrentAuditor??""}, {nameof(biafirst)}: {biafirst??""}, {nameof(cPTCode)}: {cPTCode??""}, {nameof(cDefine12)}: {cDefine12??""}, {nameof(cDefine2)}: {cDefine2??""}, {nameof(bpufirst)}: {bpufirst??""}, {nameof(cOrderCode)}: {cOrderCode??""}, {nameof(cDefine4)}: {cDefine4??""}, {nameof(iExchRate)}: {iExchRate??""}, {nameof(cModifyPerson)}: {cModifyPerson??""}, {nameof(cSourceLs)}: {cSourceLs??""}, {nameof(cDefine6)}: {cDefine6??""}, {nameof(iDiscountTaxType)}: {iDiscountTaxType??""}, {nameof(cDefine10)}: {cDefine10??""}, {nameof(dChkDate)}: {dChkDate??""}, {nameof(cDefine16)}: {cDefine16??""}, {nameof(ID)}: {ID??""}, {nameof(cPersonCode)}: {cPersonCode??""}, {nameof(cDefine14)}: {cDefine14??""}, {nameof(bOMFirst)}: {bOMFirst??""}, {nameof(cDefine11)}: {cDefine11??""}, {nameof(caddcode)}: {caddcode??""}, {nameof(cAccounter)}: {cAccounter??""}";
         }
     }
     public class Rdrecords32Model
     {
+        public string DLID { get; set; }
         /// <summary>
         /// 重要 出库单类型
         /// </summary>
@@ -341,7 +370,7 @@ namespace WEB_API.Models.U8API
         /// <summary>
         /// 必须 单据体行号
         /// </summary>
-        public string irowno { get; set; }//(U8100)   int 4  True
+        public int irowno { get; set; }//(U8100)   int 4  True
         /// <summary>
         /// 必须  存货编码
         /// </summary>
@@ -353,7 +382,7 @@ namespace WEB_API.Models.U8API
         /// <summary>
         /// 重要 辅计量数量
         /// </summary>
-        public decimal iNum { get; set; }//(U8100)    17  True
+        public string iNum { get; set; }//(U8100)    17  True
 
         /// <summary>
         /// 重要 金额
@@ -774,15 +803,15 @@ namespace WEB_API.Models.U8API
         /// <summary>
         /// 表体自定义项27
         /// </summary>
-        public float cDefine27 { get; set; }//(U8100)    8  True
+        public string cDefine27 { get; set; }//(U8100)    8  True
         /// <summary>
         /// 已开票数量
         /// </summary>
-        public decimal fsettleqty { get; set; }//(U8110)    13  True   
+        public string fsettleqty { get; set; }//(U8110)    13  True   
         /// <summary>
         /// 计划金额或售价金额
         /// </summary>
-        public decimal iPPrice { get; set; }//(U8100)   money 8  True
+        public string iPPrice { get; set; }//(U8100)   money 8  True
         /// <summary>
         /// 代管商编码
         /// </summary>
@@ -790,7 +819,25 @@ namespace WEB_API.Models.U8API
 
         public override string ToString()
         {
-            return $"{nameof(coutvouchtype)}: {coutvouchtype}, {nameof(isodid)}: {isodid}, {nameof(isoseq)}: {isoseq}, {nameof(coritracktype)}: {coritracktype}, {nameof(iDLsID)}: {iDLsID}, {nameof(iQuantity)}: {iQuantity}, {nameof(iUnitCost)}: {iUnitCost}, {nameof(cinvouchtype)}: {cinvouchtype}, {nameof(irowno)}: {irowno}, {nameof(cInvCode)}: {cInvCode}, {nameof(cFree1)}: {cFree1}, {nameof(iNum)}: {iNum}, {nameof(iPrice)}: {iPrice}, {nameof(iinvexchrate)}: {iinvexchrate}, {nameof(cBatch)}: {cBatch}, {nameof(iordercode)}: {iordercode}, {nameof(csocode)}: {csocode}, {nameof(cItemCode)}: {cItemCode}, {nameof(cItemCName)}: {cItemCName}, {nameof(cItem_class)}: {cItem_class}, {nameof(cName)}: {cName}, {nameof(cFree6)}: {cFree6}, {nameof(cFree4)}: {cFree4}, {nameof(iFNum)}: {iFNum}, {nameof(cDefine23)}: {cDefine23}, {nameof(cRejectCode)}: {cRejectCode}, {nameof(bCosting)}: {bCosting}, {nameof(dCheckDate)}: {dCheckDate}, {nameof(iorderseq)}: {iorderseq}, {nameof(AutoID)}: {AutoID}, {nameof(cVouchCode)}: {cVouchCode}, {nameof(iExpiratDateCalcu)}: {iExpiratDateCalcu}, {nameof(cDefine25)}: {cDefine25}, {nameof(cDefine35)}: {cDefine35}, {nameof(iordertype)}: {iordertype}, {nameof(cpesocode)}: {cpesocode}, {nameof(cBVencode)}: {cBVencode}, {nameof(isotype)}: {isotype}, {nameof(iCheckIds)}: {iCheckIds}, {nameof(iEqDID)}: {iEqDID}, {nameof(ipesotype)}: {ipesotype}, {nameof(cwhpersonname)}: {cwhpersonname}, {nameof(cbdlcode)}: {cbdlcode}, {nameof(dMadeDate)}: {dMadeDate}, {nameof(iorderdid)}: {iorderdid}, {nameof(cFree9)}: {cFree9}, {nameof(cFree5)}: {cFree5}, {nameof(iposflag)}: {iposflag}, {nameof(cDefine28)}: {cDefine28}, {nameof(iRejectIds)}: {iRejectIds}, {nameof(ipesodid)}: {ipesodid}, {nameof(ccusinvcode)}: {ccusinvcode}, {nameof(fretqtyykp)}: {fretqtyykp}, {nameof(cDefine34)}: {cDefine34}, {nameof(dbKeepDate)}: {dbKeepDate}, {nameof(bVMIUsed)}: {bVMIUsed}, {nameof(cDefine26)}: {cDefine26}, {nameof(cMassUnit)}: {cMassUnit}, {nameof(iFQuantity)}: {iFQuantity}, {nameof(iEnsID)}: {iEnsID}, {nameof(fretqtywkp)}: {fretqtywkp}, {nameof(iNQuantity)}: {iNQuantity}, {nameof(bsaleoutcreatebill)}: {bsaleoutcreatebill}, {nameof(iNNum)}: {iNNum}, {nameof(cExpirationdate)}: {cExpirationdate}, {nameof(cFree7)}: {cFree7}, {nameof(cFree2)}: {cFree2}, {nameof(bneedbill)}: {bneedbill}, {nameof(dExpirationdate)}: {dExpirationdate}, {nameof(iSendQuantity)}: {iSendQuantity}, {nameof(cDefine29)}: {cDefine29}, {nameof(iSRedOutQuantity)}: {iSRedOutQuantity}, {nameof(cFree3)}: {cFree3}, {nameof(iSOutQuantity)}: {iSOutQuantity}, {nameof(cCheckPersonCode)}: {cCheckPersonCode}, {nameof(iCheckIdBaks)}: {iCheckIdBaks}, {nameof(iPUnitCost)}: {iPUnitCost}, {nameof(cDefine24)}: {cDefine24}, {nameof(iSBsID)}: {iSBsID}, {nameof(strContractId)}: {strContractId}, {nameof(cFree10)}: {cFree10}, {nameof(ipesoseq)}: {ipesoseq}, {nameof(bIAcreatebill)}: {bIAcreatebill}, {nameof(iInvSNCount)}: {iInvSNCount}, {nameof(bGsp)}: {bGsp}, {nameof(cDefine32)}: {cDefine32}, {nameof(cInVouchCode)}: {cInVouchCode}, {nameof(bChecked)}: {bChecked}, {nameof(rowufts)}: {rowufts}, {nameof(cDefine31)}: {cDefine31}, {nameof(cbserviceoid)}: {cbserviceoid}, {nameof(cDefine37)}: {cDefine37}, {nameof(strCode)}: {strCode}, {nameof(coutvouchid)}: {coutvouchid}, {nameof(iSOutNum)}: {iSOutNum}, {nameof(iAPrice)}: {iAPrice}, {nameof(cbsysbarcode)}: {cbsysbarcode}, {nameof(cCheckCode)}: {cCheckCode}, {nameof(cAssUnit)}: {cAssUnit}, {nameof(cDefine22)}: {cDefine22}, {nameof(iDebitIDs)}: {iDebitIDs}, {nameof(iVMISettleQuantity)}: {iVMISettleQuantity}, {nameof(cwhpersoncode)}: {cwhpersoncode}, {nameof(iSRedOutNum)}: {iSRedOutNum}, {nameof(cDefine36)}: {cDefine36}, {nameof(ccusinvname)}: {ccusinvname}, {nameof(cDefine33)}: {cDefine33}, {nameof(cFree8)}: {cFree8}, {nameof(cPosition)}: {cPosition}, {nameof(cBarCode)}: {cBarCode}, {nameof(cbMemo)}: {cbMemo}, {nameof(iFlag)}: {iFlag}, {nameof(cDefine30)}: {cDefine30}, {nameof(ipreuseqty)}: {ipreuseqty}, {nameof(cDefine27)}: {cDefine27}, {nameof(fsettleqty)}: {fsettleqty}, {nameof(iPPrice)}: {iPPrice}, {nameof(cvmivencode)}: {cvmivencode}";
+            return $"{nameof(coutvouchtype)}: {coutvouchtype??""}, {nameof(isodid)}: {isodid??""}, {nameof(isoseq)}: {isoseq??""}, {nameof(coritracktype)}: {coritracktype??""}, {nameof(iDLsID)}: {iDLsID??""}, {nameof(iQuantity)}: {iQuantity}, {nameof(iUnitCost)}: {iUnitCost??""}, {nameof(cinvouchtype)}: {cinvouchtype??""}, {nameof(irowno)}: {irowno}, {nameof(cInvCode)}: {cInvCode??""}, {nameof(cFree1)}: {cFree1??""}, {nameof(iNum)}: {iNum??""}, {nameof(iPrice)}: {iPrice??""}, {nameof(iinvexchrate)}: {iinvexchrate??""}, {nameof(cBatch)}: {cBatch??""}, {nameof(iordercode)}: {iordercode??""}, {nameof(csocode)}: {csocode??""}, {nameof(cItemCode)}: {cItemCode??""}, {nameof(cItemCName)}: {cItemCName??""}, {nameof(cItem_class)}: {cItem_class??""}, {nameof(cName)}: {cName??""}, {nameof(cFree6)}: {cFree6??""}, {nameof(cFree4)}: {cFree4??""}, {nameof(iFNum)}: {iFNum??""}, {nameof(cDefine23)}: {cDefine23??""}, {nameof(cRejectCode)}: {cRejectCode??""}, {nameof(bCosting)}: {bCosting??""}, {nameof(dCheckDate)}: {dCheckDate??""}, {nameof(iorderseq)}: {iorderseq??""}, {nameof(AutoID)}: {AutoID??""}, {nameof(cVouchCode)}: {cVouchCode??""}, {nameof(iExpiratDateCalcu)}: {iExpiratDateCalcu??""}, {nameof(cDefine25)}: {cDefine25??""}, {nameof(cDefine35)}: {cDefine35??""}, {nameof(iordertype)}: {iordertype??""}, {nameof(cpesocode)}: {cpesocode??""}, {nameof(cBVencode)}: {cBVencode??""}, {nameof(isotype)}: {isotype??""}, {nameof(iCheckIds)}: {iCheckIds??""}, {nameof(iEqDID)}: {iEqDID??""}, {nameof(ipesotype)}: {ipesotype??""}, {nameof(cwhpersonname)}: {cwhpersonname??""}, {nameof(cbdlcode)}: {cbdlcode??""}, {nameof(dMadeDate)}: {dMadeDate??""}, {nameof(iorderdid)}: {iorderdid??""}, {nameof(cFree9)}: {cFree9??""}, {nameof(cFree5)}: {cFree5??""}, {nameof(iposflag)}: {iposflag??""}, {nameof(cDefine28)}: {cDefine28??""}, {nameof(iRejectIds)}: {iRejectIds??""}, {nameof(ipesodid)}: {ipesodid??""}, {nameof(ccusinvcode)}: {ccusinvcode??""}, {nameof(fretqtyykp)}: {fretqtyykp??""}, {nameof(cDefine34)}: {cDefine34??""}, {nameof(dbKeepDate)}: {dbKeepDate??""}, {nameof(bVMIUsed)}: {bVMIUsed??""}, {nameof(cDefine26)}: {cDefine26??""}, {nameof(cMassUnit)}: {cMassUnit??""}, {nameof(iFQuantity)}: {iFQuantity??""}, {nameof(iEnsID)}: {iEnsID??""}, {nameof(fretqtywkp)}: {fretqtywkp??""}, {nameof(iNQuantity)}: {iNQuantity??""}, {nameof(bsaleoutcreatebill)}: {bsaleoutcreatebill??""}, {nameof(iNNum)}: {iNNum??""}, {nameof(cExpirationdate)}: {cExpirationdate??""}, {nameof(cFree7)}: {cFree7??""}, {nameof(cFree2)}: {cFree2??""}, {nameof(bneedbill)}: {bneedbill??""}, {nameof(dExpirationdate)}: {dExpirationdate??""}, {nameof(iSendQuantity)}: {iSendQuantity??""}, {nameof(cDefine29)}: {cDefine29??""}, {nameof(iSRedOutQuantity)}: {iSRedOutQuantity??""}, {nameof(cFree3)}: {cFree3??""}, {nameof(iSOutQuantity)}: {iSOutQuantity??""}, {nameof(cCheckPersonCode)}: {cCheckPersonCode??""}, {nameof(iCheckIdBaks)}: {iCheckIdBaks??""}, {nameof(iPUnitCost)}: {iPUnitCost??""}, {nameof(cDefine24)}: {cDefine24??""}, {nameof(iSBsID)}: {iSBsID??""}, {nameof(strContractId)}: {strContractId??""}, {nameof(cFree10)}: {cFree10??""}, {nameof(ipesoseq)}: {ipesoseq??""}, {nameof(bIAcreatebill)}: {bIAcreatebill??""}, {nameof(iInvSNCount)}: {iInvSNCount??""}, {nameof(bGsp)}: {bGsp??""}, {nameof(cDefine32)}: {cDefine32??""}, {nameof(cInVouchCode)}: {cInVouchCode??""}, {nameof(bChecked)}: {bChecked??""}, {nameof(rowufts)}: {rowufts??""}, {nameof(cDefine31)}: {cDefine31??""}, {nameof(cbserviceoid)}: {cbserviceoid??""}, {nameof(cDefine37)}: {cDefine37??""}, {nameof(strCode)}: {strCode??""}, {nameof(coutvouchid)}: {coutvouchid??""}, {nameof(iSOutNum)}: {iSOutNum??""}, {nameof(iAPrice)}: {iAPrice??""}, {nameof(cbsysbarcode)}: {cbsysbarcode??""}, {nameof(cCheckCode)}: {cCheckCode??""}, {nameof(cAssUnit)}: {cAssUnit??""}, {nameof(cDefine22)}: {cDefine22??""}, {nameof(iDebitIDs)}: {iDebitIDs??""}, {nameof(iVMISettleQuantity)}: {iVMISettleQuantity??""}, {nameof(cwhpersoncode)}: {cwhpersoncode??""}, {nameof(iSRedOutNum)}: {iSRedOutNum??""}, {nameof(cDefine36)}: {cDefine36??""}, {nameof(ccusinvname)}: {ccusinvname??""}, {nameof(cDefine33)}: {cDefine33??""}, {nameof(cFree8)}: {cFree8??""}, {nameof(cPosition)}: {cPosition??""}, {nameof(cBarCode)}: {cBarCode??""}, {nameof(cbMemo)}: {cbMemo??""}, {nameof(iFlag)}: {iFlag??""}, {nameof(cDefine30)}: {cDefine30??""}, {nameof(ipreuseqty)}: {ipreuseqty??""}, {nameof(cDefine27)}: {cDefine27??""}, {nameof(fsettleqty)}: {fsettleqty??""}, {nameof(iPPrice)}: {iPPrice??""}, {nameof(cvmivencode)}: {cvmivencode}";
         }
     }
+
+    /// <summary>
+    /// 删除用实体
+    /// </summary>
+    public class DeleteRd32
+    {
+         
+        /// <summary>
+        ///  
+        /// </summary>
+        public string rd32ID { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string rd10ID { get; set; }
+         
+    }
+
 }

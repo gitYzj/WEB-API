@@ -31,10 +31,12 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\WEB-API.xml</DocumentationFile>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,6 +55,9 @@
     <Reference Include="HzyaU8COInterface, Version=1.1.2.7, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\U8CO\HzyaU8COInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.U8Login, Version=1.14.0.0, Culture=neutral, PublicKeyToken=79a4e7ad54eeabca">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="JWT, Version=8.0.0.0, Culture=neutral, PublicKeyToken=6f98bca0f40f2ecf, processorArchitecture=MSIL">
       <HintPath>packages\JWT.8.9.0\lib\net46\JWT.dll</HintPath>
@@ -179,7 +184,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\API\Base\ApiBaseController.cs" />
     <Compile Include="Controllers\API\TokenController.cs" />
-    <Compile Include="Controllers\API\U8API\Rdrecord32Controller.cs" />
+    <Compile Include="Controllers\API\U8API\Rdrecord10Controller.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\API\U8API\Base\U8ApiBaseController.cs" />
@@ -243,6 +248,7 @@
     <Content Include="DLL\U8CO\Template\收款单表体.txt" />
     <Content Include="DLL\U8CO\Template\收款单表头.txt" />
     <Content Include="DLL\U8CO\Template\说明.txt" />
+    <Content Include="DLL\U8CO\UFSoft.U8.U8M.BFProxy.dll" />
     <Content Include="DLL\U8CO\VBConversion\VBCOConversion.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -273,6 +279,7 @@
     <Content Include="log4net.config" />
     <Content Include="DLL\U8CO\版本说明.md" />
     <Content Include="DLL\U8CO\错误信息处理方式.md" />
+    <Content Include="DLL\U8CO\CO.zip" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -296,6 +303,7 @@
     <Content Include="项目说明.md" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DLL\U8CO\en-US\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>

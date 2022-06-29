@@ -1,0 +1,4 @@
+2022-05-14T23:14:34.9319336+08:00 : 库存CO AddNewVoucher错误:System.IO.DirectoryNotFoundException: 系统找不到指定的路径。
+
+   在 MSXML2.IXMLDOMDocument2.save(Object destination)
+   在 HzyaU8COInterface.CO.STCOInterface.AddNewVoucher(DOMDocument head, DOMDocument body, DOMDocument domPosition, Boolean bCheck, Boolean bBeforCheckStock, Boolean bIsRedVouch, String sAddedState, Boolean bReMote)

@@ -4,6 +4,16 @@
         <name>HzyaU8COInterface</name>
     </assembly>
     <members>
+        <member name="F:HzyaU8COInterface.BO.MOBOMInterface.DefEndDate">
+            <summary>
+            缺省结束日期
+            </summary>
+        </member>
+        <member name="F:HzyaU8COInterface.BO.MOBOMInterface.DefStartDate">
+            <summary>
+            缺省开始日期
+            </summary>
+        </member>
         <member name="M:HzyaU8COInterface.BO.MOBOMInterface.AuditingBOM(System.Int32,HzyaU8COInterface.BO.EnumBOMCatalogType,System.String)">
             <summary>
             物料清单审核处理
@@ -22,7 +32,25 @@
             <param name="versionOrIdenCode">主版本号或替代标识</param>
             <returns>如果加载成功，则返回True；否则，返回False。</returns>
         </member>
-        <member name="M:HzyaU8COInterface.BO.MOBOMInterface.LoadBOM(System.Int32,HzyaU8COInterface.BO.EnumBOMCatalogType,System.String,UFSoft.U8.BO.BE.StandardBom@)">
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface.VouchClose(System.Int32,HzyaU8COInterface.BO.EnumBOMCatalogType,System.String)">
+            <summary>
+            关闭
+            </summary>
+            <param name="partId">母件物料ID</param>
+            <param name="bomType">BOM类型1:主BOM</param>
+            <param name="versionOrIdenCode">主版本号或替代标识</param>
+            <returns>如果加载成功，则返回True；否则，返回False。</returns>
+        </member>
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface.VouchOpen(System.Int32,HzyaU8COInterface.BO.EnumBOMCatalogType,System.String)">
+            <summary>
+            还原
+            </summary>
+            <param name="partId">母件物料ID</param>
+            <param name="bomType">BOM类型1:主BOM</param>
+            <param name="versionOrIdenCode">主版本号或替代标识</param>
+            <returns>如果加载成功，则返回True；否则，返回False。</returns>
+        </member>
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface.LoadBOM(System.Int32,HzyaU8COInterface.BO.EnumBOMCatalogType,System.String)">
             <summary>
             加载“物料清单”
             </summary>
@@ -49,6 +77,62 @@
             <returns>如果保存成功，则返回True；否则，返回False。</returns>
             
         </member>
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface.ModifyBOM(System.String,System.Boolean)">
+            <summary>
+            修改“物料清单”
+            </summary>
+            <param name="jsonBO">需要修改bom信息,成功后返回BomId</param>
+            <param name="isAllDelete">是否全删替代料，默认全部删除，如果需要非全部删除，需要修改为false，接口调用的时候注意！！！</param>
+            <returns>如果保存成功，则返回True；否则，返回False。</returns>
+            
+        </member>
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface._DeleteUnusedComponentSub(Newtonsoft.Json.Linq.JObject,UFSoft.U8.BO.BE.Component,System.String)">
+            <summary>
+            删除未指定的替换料
+            </summary>
+            <param name="cmpEI">BOM子件EI</param>
+            <param name="cmp">子件BE</param>
+            <param name="subEntityPrefix"></param>
+        </member>
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface._PrepareBakCmpDate(UFSoft.U8.BO.BE.BomEntity,System.Collections.Generic.Dictionary{UFSoft.U8.BO.BE.Component,System.Collections.Generic.KeyValuePair{System.DateTime,System.DateTime}})">
+            <summary>
+            扩大子件生效日范围,保证可以调整母件版本日期
+            </summary>
+            <param name="bomBE"></param>
+            <param name="bakCmpDate"></param>
+        </member>
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface._RestoreBakCmpDate(UFSoft.U8.BO.BE.BomEntity,System.Collections.Generic.Dictionary{UFSoft.U8.BO.BE.Component,System.Collections.Generic.KeyValuePair{System.DateTime,System.DateTime}})">
+            <summary>
+            恢复备份的子件日期范围
+            </summary>
+            <param name="bomBE"></param>
+            <param name="bakCmpDate"></param>
+        </member>
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface.ShutDown">
+             <summary>
+            关闭对象
+             </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface.Dispose">
+            <summary>
+            请使用 ShutDown 关闭对象
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface.BeginTrans">
+            <summary>
+            开始事务
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface.CommitTrans">
+            <summary>
+            事务提交
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.BO.MOBOMInterface.RollbackTrans">
+            <summary>
+            事务结束
+            </summary>
+        </member>
         <member name="T:HzyaU8COInterface.BO.BomNewProcess">
             <summary>
             新增BOM资料处理。
@@ -69,6 +153,118 @@
         <member name="F:HzyaU8COInterface.BO.EnumBOMCatalogType.StandardBom">
             <summary>
             标准bom
+            </summary>
+        </member>
+        <member name="T:HzyaU8COInterface.CO.APApplyPayCOInterface">
+            <summary>
+            财务AP 付款申请单
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APApplyPayCOInterface.#ctor">
+            <summary>
+            单据初始化
+            </summary>
+            <param name="tAPVoucherType">单据类型</param>
+            <param name="cModelPath">默认模板路径</param> 
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APApplyPayCOInterface.LoadVoucher(System.String)">
+            <summary>
+            获取订单
+            </summary>
+            <param name="cLinkID">单据id</param>
+            <returns>oData type CoModel</returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APApplyPayCOInterface.AddNewVoucher(MSXML2.DOMDocument,MSXML2.DOMDocument)">
+            <summary>
+            新增单据
+            </summary>
+            <param name="Head"></param>
+            <param name="Body"></param>
+            <param name="VoucherState"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APApplyPayCOInterface.LoadVoucherJson(System.String)">
+            <summary>
+            获取单据
+            </summary>
+            <param name="VoucherID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APApplyPayCOInterface.AddNewVoucherJson(System.String)">
+            <summary>
+            新增单据jsom
+            </summary>
+            <param name="VoucherJson"> 
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.APApplyPayCOInterface.DeleteVoucher(System.String)">
+            <summary>
+            删除单据
+            </summary>
+            <param name="iID"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HzyaU8COInterface.CO.Interface.Transaction">
+            <summary>
+            基础事务方法
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.Interface.Transaction.BeginTrans">
+            <summary>
+            开启事务
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.Interface.Transaction.CommitTrans">
+            <summary>
+            提交事务
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.Interface.Transaction.RollbackTrans">
+            <summary>
+            回滚事务
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.CO.Interface.COLogInInterface.U8LoginUfDataConnstringForNet">
+            <summary>
+            u8date 库链接字符串
+            </summary>
+        </member>
+        <member name="P:HzyaU8COInterface.CO.Interface.COLogInInterface.UfDbName">
+            <summary>
+            u8date 库链接字符串 VB
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.Interface.COLogInInterface.Init(System.String)">
+            <summary>
+            Co 初始化
+            </summary>
+            <param name="userToken">U8Login.userToken 来初始化登陆对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.Interface.COLogInInterface.Init(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            co 初始化
+            </summary>
+            <param name="pSubId">登录模块</param>
+            <param name="pAccId">账套</param>
+            <param name="pYearId">年度</param>
+            <param name="pUserId">用户名</param>
+            <param name="pPassword">用户密码</param>
+            <param name="pDate">登陆日期</param>
+            <param name="cSrv">服务器地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.Interface.COLogInInterface.InitLogin(U8Login.clsLogin)">
+            <summary>
+            Co 初始化
+            </summary>
+            <param name="login"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.Interface.COLogInInterface.ShutDown">
+            <summary>
+            关闭U8对象
             </summary>
         </member>
         <member name="T:HzyaU8COInterface.CO.MCCOInterface">
@@ -116,12 +312,12 @@
         </member>
         <member name="M:HzyaU8COInterface.CO.AACOInterface.ModifyArchives(System.String)">
             <summary>
-            新增单据
+            修改单据
             </summary>
             <param name="cDocXml"></param> 
             <returns></returns>
         </member>
-        <member name="M:HzyaU8COInterface.CO.AACOInterface.AddArchivesJson(System.String)">
+        <member name="M:HzyaU8COInterface.CO.AACOInterface.AddArchivesJson(System.String,System.Boolean,System.Boolean)">
             <summary>
             新增单据jsom
             </summary>
@@ -156,43 +352,6 @@
             <summary>
             存货档案
             </summary>
-        </member>
-        <member name="P:HzyaU8COInterface.CO.Interface.COLogInInterface.U8LoginUfDataConnstringForNet">
-            <summary>
-            u8date 库链接字符串
-            </summary>
-        </member>
-        <member name="P:HzyaU8COInterface.CO.Interface.COLogInInterface.UfDbName">
-            <summary>
-            u8date 库链接字符串 VB
-            </summary>
-        </member>
-        <member name="M:HzyaU8COInterface.CO.Interface.COLogInInterface.Init(System.String)">
-            <summary>
-            Co 初始化
-            </summary>
-            <param name="userToken">U8Login.userToken 来初始化登陆对象</param>
-            <returns></returns>
-        </member>
-        <member name="M:HzyaU8COInterface.CO.Interface.COLogInInterface.Init(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
-            <summary>
-            co 初始化
-            </summary>
-            <param name="pSubId">登录模块</param>
-            <param name="pAccId">账套</param>
-            <param name="pYearId">年度</param>
-            <param name="pUserId">用户名</param>
-            <param name="pPassword">用户密码</param>
-            <param name="pDate">登陆日期</param>
-            <param name="cSrv">服务器地址</param>
-            <returns></returns>
-        </member>
-        <member name="M:HzyaU8COInterface.CO.Interface.COLogInInterface.InitLogin(U8Login.clsLogin)">
-            <summary>
-            Co 初始化
-            </summary>
-            <param name="login"></param>
-            <returns></returns>
         </member>
         <member name="T:HzyaU8COInterface.CO.APCOInterface">
             <summary>
@@ -399,6 +558,13 @@
             <summary>
             单据删除
             </summary> 
+        </member>
+        <member name="M:HzyaU8COInterface.CO.PUCOInterface.DeleteVoucherID(System.String)">
+            <summary>
+            删除
+            </summary>
+            <param name="cVoucherId">单据id</param>
+            <returns></returns>
         </member>
         <member name="M:HzyaU8COInterface.CO.PUCOInterface.Close(HzyaU8COInterface.Model.CoModel)">
             <summary>
@@ -636,9 +802,37 @@
             登录年度
             </summary>
         </member>
+        <member name="M:HzyaU8COInterface.CO.VoucherInterface.Init">
+            <summary>
+            单据初始化
+            </summary> 
+        </member>
+        <member name="M:HzyaU8COInterface.CO.VoucherInterface.Transact(System.String)">
+            <summary>
+            新增凭证XML版本
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.VoucherInterface.TransactJson(System.String)">
+            <summary>
+            新增凭证json版本  制作中
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.VoucherInterface.VoucherTemplate">
+            <summary>
+            获取模板
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:HzyaU8COInterface.CO.STCOInterface">
             <summary>
             库存
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.STCOInterface.StTypeCutover(HzyaU8COInterface.CO.STVoucherType)">
+            <summary>
+            切换单据
             </summary>
         </member>
         <member name="M:HzyaU8COInterface.CO.STCOInterface.AddNewVoucher(MSXML2.DOMDocument,MSXML2.DOMDocument,MSXML2.DOMDocument,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean)">
@@ -695,6 +889,18 @@
             <param name="bUpdateNeedEas"></param>
             <returns></returns>
         </member>
+        <member name="M:HzyaU8COInterface.CO.STCOInterface.UpdateJson(System.String,System.Boolean,System.Boolean,System.Boolean,System.String,System.Boolean)">
+            <summary>
+            更新接口
+            </summary>
+            <param name="VoucherJson"></param>
+            <param name="bCheck"></param>
+            <param name="bBeforCheckStock"></param>
+            <param name="bIsRedVouch"></param>
+            <param name="sAddedState"></param>
+            <param name="bUpdateNeedEas"></param>
+            <returns></returns>
+        </member>
         <member name="M:HzyaU8COInterface.CO.STCOInterface.UnVerifyVoucher(System.String)">
             <summary>
             弃审单据
@@ -741,6 +947,35 @@
             </summary>
             <param name="_vouchType">单据类型(此单据类型为数据库后台表的后缀号码,例如:采购入库单:01)</param>
             <param name="sCardNum">单据类型编码</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.STCOInterface.BeginTrans">
+            <summary>
+            开启事务
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.STCOInterface.CommitTrans">
+            <summary>
+            提交事务
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.STCOInterface.RollbackTrans">
+            <summary>
+            回滚事务
+            </summary>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.STCOInterface.VouchOpen(System.String)">
+            <summary>
+            单据删除
+            </summary>
+            <param name="VoucherId">单据ID</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:HzyaU8COInterface.CO.STCOInterface.VouchClose(System.String)">
+            <summary>
+            单据关闭
+            </summary>
+            <param name="VoucherId">单据ID</param>
             <returns>是否成功</returns>
         </member>
         <member name="T:HzyaU8COInterface.CO.STVoucherType">
@@ -940,7 +1175,8 @@
             <param name="iQuantity">数量</param>
             <param name="nflat">汇率</param>
             <param name="iPerTaxRate">税率 默认13</param>
-            <param name="iLenDecimal">保留小数位数</param>
+            <param name="iLenDecimal">金额保留小数位数</param>
+            <param name="iLenDecimal">金额保留小数位数</param>
         </member>
         <member name="P:HzyaU8COInterface.Tools.AmountEntity.PerTaxRate">
             <summary>

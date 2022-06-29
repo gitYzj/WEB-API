@@ -24,10 +24,11 @@ namespace WEB_API.Models
             Message = message;
             Data = data;
         }
+
         /// <summary>
         /// 异常编码 0正常
         /// </summary>
-        public int Error { get; set; }
+        public int Error { get; set; } = -1;
         /// <summary>
         /// 异常信息
         /// </summary>
@@ -37,5 +38,18 @@ namespace WEB_API.Models
         /// </summary>
 
         public T Data { get; set; }
+
+        public override string ToString()
+        {
+            return $"{{Error{Error},Error{Error},Message{Message},Data{Data}}}";
+        }
     }
+
+    public class ApiVocModel<T,B>
+    {
+        public T head { get; set; }
+        public B body { get; set; }
+    }
+ 
 }
+ 
